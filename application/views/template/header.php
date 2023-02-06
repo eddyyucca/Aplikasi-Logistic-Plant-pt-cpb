@@ -38,7 +38,7 @@
 				<!-- Sidebar - Brand -->
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin') ?>">
 					<div class="sidebar-brand-icon">
-						<img src="<?= base_url('assets/pemda-tapin.png'); ?>" width="50" height="60" alt="Logo Pemda-Tapin">
+						<img src="<?= base_url('assets/pemda-tapin.png'); ?>" width="50" height="60">
 					</div>
 					<div class="sidebar-brand-text mx-3">BKPSDM</div>
 				</a>
@@ -61,25 +61,12 @@
 					</a>
 					<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="<?= base_url('admin/jabatan') ?>">Data Jabatan</a>
-							<a class="collapse-item" href="<?= base_url('admin/bidang') ?>">Data Bidang</a>
-							<a class="collapse-item" href="<?= base_url('atk/view_data') ?>">Data ATK</a>
+							<a class="collapse-item" href="<?= base_url('admin/inventory') ?>">Data Inventory</a>
+							<a class="collapse-item" href="<?= base_url('admin/unit') ?>">Data Unit</a>
 						</div>
 					</div>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Permintaan" aria-expanded="true" aria-controls="Permintaan">
-						<i class="fas fa-database"></i>
-						<span>Permintaan</span>
-					</a>
-					<div id="Permintaan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="<?= base_url('admin/jabatan') ?>">Data Jabatan</a>
-							<a class="collapse-item" href="<?= base_url('admin/bidang') ?>">Data Bidang</a>
-							<a class="collapse-item" href="<?= base_url('atk/view_data') ?>">Data ATK</a>
-						</div>
-					</div>
-				</li> -->
+
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 						<i class="fas fa-fw fa-folder"></i>
@@ -96,7 +83,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo2">
 						<i class="fas fa-table"></i>
-						<span>Laporan Order ATK</span>
+						<span>Laporan Order Barang</span>
 					</a>
 					<div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -104,17 +91,6 @@
 							<a class="collapse-item" href="<?= base_url('order/laporan_bidang') ?>">Laporan Bidang</a>
 							<a class="collapse-item" href="<?= base_url('order/order_selesai') ?>">Order Selesai</a>
 							<a class="collapse-item" href="<?= base_url('order/order_ditolak') ?>">Order Ditolak</a>
-						</div>
-					</div>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pegawai" aria-expanded="true" aria-controls="pegawai">
-						<i class="fas fa-database"></i>
-						<span>Kepegawaian</span>
-					</a>
-					<div id="pegawai" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="<?= base_url('admin/pegawai') ?>">Data Pegawai</a>
 						</div>
 					</div>
 				</li>
@@ -134,93 +110,65 @@
 						</div>
 					</div>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pangkat" aria-expanded="true" aria-controls="pangkat">
-						<i class="fas fa-database"></i>
-						<span>Pengajuan Pangkat</span>
-					</a>
-					<div id="pangkat" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="<?= base_url('admin/cek_pengajuan') ?>">Pengajuan Baru</a>
-							<a class="collapse-item" href="<?= base_url('admin/semua_pengajuan_diterima') ?>">Pengajuan Diterima</a>
-							<a class="collapse-item" href="<?= base_url('admin/semua_pengajuan_ditolak') ?>">Pengajuan Ditolak</a>
-							<a class="collapse-item" href="<?= base_url('admin/pengajuan_tahun') ?>">Pengajuan Tahun <?= date('Y') ?></a>
-						</div>
-					</div>
-				</li> -->
-				<!-- Divider -->
+
 				<hr class="sidebar-divider d-none d-md-block">
 
-
-				<!-- Divider -->
-
-				<!-- Sidebar Toggler (Sidebar) -->
 				<div class="text-center d-none d-md-inline">
 					<button class="rounded-circle border-0" id="sidebarToggle"></button>
 				</div>
-
 			</ul>
-			<!-- End of Sidebar -->
+			<div id="content">
 
-			<!-- Content Wrapper -->
-			<div id="content-wrapper" class="d-flex flex-column">
+				<!-- Topbar -->
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-				<!-- Main Content -->
-				<div id="content">
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav ml-auto">
 
-					<!-- Topbar -->
-					<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-						<!-- Sidebar Toggle (Topbar) -->
-						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-							<i class="fa fa-bars"></i>
-						</button>
-
-
-
-						<!-- Topbar Navbar -->
-						<ul class="navbar-nav ml-auto">
-
-							<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-							<li class="nav-item dropdown no-arrow d-sm-none">
-								<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fas fa-search fa-fw"></i>
-								</a>
-								<!-- Dropdown - Messages -->
-								<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-									<form class="form-inline mr-auto w-100 navbar-search">
-										<div class="input-group">
-											<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-											<div class="input-group-append">
-												<button class="btn btn-primary" type="button">
-													<i class="fas fa-search fa-sm"></i>
-												</button>
-											</div>
+						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+						<li class="nav-item dropdown no-arrow d-sm-none">
+							<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-search fa-fw"></i>
+							</a>
+							<!-- Dropdown - Messages -->
+							<div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+								<form class="form-inline mr-auto w-100 navbar-search">
+									<div class="input-group">
+										<input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+										<div class="input-group-append">
+											<button class="btn btn-primary" type="button">
+												<i class="fas fa-search fa-sm"></i>
+											</button>
 										</div>
-									</form>
-								</div>
-							</li>
+									</div>
+								</form>
+							</div>
+						</li>
 
-							<!-- Nav Item - Alerts -->
+						<!-- Nav Item - Alerts -->
 
-							<!-- Nav Item - User Information -->
-							<li class="nav-item dropdown no-arrow">
-								<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<span class="mr-2 d-none d-lg-inline text-gray-600"><?= $nama; ?></span>
-									<i class="fas fa-user-circle"></i>
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="mr-2 d-none d-lg-inline text-gray-600"><?= $nama; ?></span>
+								<i class="fas fa-user-circle"></i>
+							</a>
+							<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Keluar
 								</a>
-								<!-- Dropdown - User Information -->
-								<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-										Keluar
-									</a>
-								</div>
-							</li>
+							</div>
+						</li>
 
-						</ul>
+					</ul>
 
-					</nav>
-					<!-- End of Topbar -->
+				</nav>
+				<!-- End of Topbar -->
 
-					<!-- end menu -->
+				<!-- end menu -->
