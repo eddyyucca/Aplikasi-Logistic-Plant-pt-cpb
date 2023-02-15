@@ -65,7 +65,7 @@
 
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="charts.html">
+					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Inventory</span></a>
 				</li>

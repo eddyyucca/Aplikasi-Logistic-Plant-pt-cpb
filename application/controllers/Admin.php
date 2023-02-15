@@ -10,7 +10,7 @@ class Admin extends CI_Controller
         $this->load->model('departement_m');
         $this->load->model('jabatan_m');
         $this->load->model('section_m');
-        // $this->load->model('alumni_m');
+        $this->load->model('logistik_m');
 
         // $level_akun = $this->session->userdata('level');
         // if ($level_akun != "admin") {
@@ -206,6 +206,19 @@ class Admin extends CI_Controller
         return redirect('admin/jabatan');
     }
     //end jabatan
+
+    // Log
+    public function data_logistik()
+    {
+        $data['judul'] = 'Data Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->logistik_m->get_all_log();
+        $this->load->view('template/header', $data);
+        $this->load->view('logistik/data_log', $data);
+        $this->load->view('template/footer');
+    }
+    // end log
 
 
 }
