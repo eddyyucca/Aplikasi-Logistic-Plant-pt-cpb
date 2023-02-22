@@ -9,6 +9,12 @@ class logistik_m extends CI_Model
         $query = $this->db->get('logistik');
         return $query->result();
     }
+    public function get_row_log($id_log)
+    {
+        $this->db->where('id_log', $id_log);
+        $query = $this->db->get('logistik');
+        return $query->row();
+    }
 }
 
 /* End of file logistik_m.php */
