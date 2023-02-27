@@ -70,6 +70,21 @@
 						<span>Inventory</span></a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+						<i class="fas fa-fw fa-thumbs-up"></i>
+						<span>Transfer Masuk</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+						<i class="fas fa-fw fa-thumbs-up"></i>
+						<span>Transfer Keluar</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+						<i class="fas fa-fw fa-thumbs-up"></i>
+						<span>Barang Masuk</span></a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="charts.html">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Status Unit</span></a>
@@ -93,6 +108,7 @@
 							<a class="collapse-item" href="<?= base_url('admin/departement') ?>">Departement</a>
 							<a class="collapse-item" href="<?= base_url('admin/section') ?>">Section</a>
 							<a class="collapse-item" href="<?= base_url('admin/jabatan') ?>">Jabatan</a>
+							<a class="collapse-item" href="<?= base_url('admin/unit') ?>">Unit</a>
 						</div>
 					</div>
 				</li>

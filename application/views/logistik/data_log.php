@@ -17,6 +17,7 @@
                             <th>No</th>
                             <th>Part Number</th>
                             <th>Spasifikasi</th>
+                            <th>Jumlah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@
                                 <td><?= $nomor++; ?></td>
                                 <td><?= $x->mc; ?></td>
                                 <td><?= $x->spc; ?></td>
+                                <td><?= $x->qty; ?></td>
                                 <td align="center">
                                     <a href="<?= base_url('admin/delete_jab/') . $x->id_log; ?>" class="btn btn-danger">Hapus</a>
                                     <a href="<?= base_url('admin/edit_jabatan/') . $x->id_log; ?>" class="btn btn-primary">Edit</a>

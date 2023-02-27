@@ -12,11 +12,11 @@ class Admin extends CI_Controller
         $this->load->model('section_m');
         $this->load->model('logistik_m');
         $this->load->model('karyawan_m');
-
-        // $level_akun = $this->session->userdata('level');
-        // if ($level_akun != "admin") {
-        // 	return redirect('auth');
-        // }
+        $level_akun = $this->session->userdata('level');
+        if ($level_akun != "admin") {
+            $this->session->set_flashdata('login', 'n_login');
+            return redirect('login');
+        }
     }
 
 
