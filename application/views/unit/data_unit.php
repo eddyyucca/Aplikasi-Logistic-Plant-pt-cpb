@@ -8,16 +8,14 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="container">
-                    <a href="<?= base_url('admin/create_jabatan') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Jabatan</a>
+                    <a href="<?= base_url('admin/create_unit') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Unit</a>
                     <hr>
                 </div>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Unit</th>
-                            <th>Spesifikasi</th>
-                            <th>Lokasi Unit</th>
+                            <th>Unit</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -27,12 +25,11 @@
                         foreach ($data as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
+                                <td><?= $x->nama_unit; ?></td>
                                 <td><?= $x->kode_unit; ?></td>
-                                <td><?= $x->tipe; ?></td>
-                                <td><?= $x->l_unit; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/delete_jab/') . $x->id_unit; ?>" class="btn btn-danger">Hapus</a>
-                                    <a href="<?= base_url('admin/edit_jabatan/') . $x->id_unit; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="<?= base_url('admin/delete_site/') . $x->id_unit; ?>" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url('admin/edit_site/') . $x->id_unit; ?>" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>
                         <?php   } ?>

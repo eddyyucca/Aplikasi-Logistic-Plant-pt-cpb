@@ -12,17 +12,17 @@
                                         <!-- Page Heading -->
                                         <div class="card">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold ">Edit Jabatan</h6>
+                                                <h6 class="m-0 font-weight-bold ">Edit Unit</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="container-fluid">
                                                         <?= validation_errors() ?>
-                                                        <form action="<?= base_url('admin/proses_edit_jab/') . $data->id_jab ?>" method="POST" enctype="multipart/form-data">
+                                                        <form action="<?= base_url('admin/proses_edit_site/') . $data->id_unit ?>" method="POST" enctype="multipart/form-data">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <td width=20%>Nama Jabatan</td>
-                                                                    <td><input type="text" name="nama_jab" class="form-control" required placeholder="Nama Jabatan" value="<?= $data->nama_jab ?>"></td>
+                                                                    <td width=20%>Nama Site</td>
+                                                                    <td><input type="text" name="nama_unit" class="form-control" required placeholder="Nama Unit" value="<?= $data->nama_unit ?>"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>

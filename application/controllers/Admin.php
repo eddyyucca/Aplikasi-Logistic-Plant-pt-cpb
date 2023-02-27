@@ -13,6 +13,7 @@ class Admin extends CI_Controller
         $this->load->model('logistik_m');
         $this->load->model('karyawan_m');
         $this->load->model('site_m');
+        $this->load->model('unit_m');
         // $level_akun = $this->session->userdata('level');
         // if ($level_akun != "admin") {
         //     $this->session->set_flashdata('login', 'n_login');
@@ -456,5 +457,59 @@ class Admin extends CI_Controller
         $this->db->where('id_site', $id_site);
         $this->db->delete('site');
         return redirect('admin/data_site');
+    }
+
+    public function data_unit()
+    {
+        $data['judul'] = 'Data unit';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->get_all_unit();
+        $this->load->view('template/header', $data);
+        $this->load->view('unit/data_unit', $data);
+        $this->load->view('template/footer');
+    }
+    public function create_unit()
+    {
+        $data['judul'] = 'Create unit';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $this->load->view('template/header', $data);
+        $this->load->view('unit/buat_unit', $data);
+        $this->load->view('template/footer');
+    }
+    public function edit_unit($id_unit)
+    {
+        $data['judul'] = 'Update unit';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->get_row_unit($id_unit);
+        $this->load->view('template/header', $data);
+        $this->load->view('unit/edit_unit', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function proses_tambah_unit()
+    {
+        $data = array(
+            'nama_unit' => $this->input->post('nama_unit')
+        );
+        $this->db->insert('unit', $data);
+        return redirect('admin/data_unit');
+    }
+    public function proses_edit_unit($id_unit)
+    {
+        $data = array(
+            'nama_unit' => $this->input->post('nama_unit')
+        );
+        $this->db->where('id_unit', $id_unit);
+        $this->db->update('unit', $data);
+        return redirect('admin/data_unit');
+    }
+    public function delete_unit($id_unit)
+    {
+        $this->db->where('id_unit', $id_unit);
+        $this->db->delete('unit');
+        return redirect('admin/data_unit');
     }
 }
