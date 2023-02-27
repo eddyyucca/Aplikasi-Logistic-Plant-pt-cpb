@@ -109,6 +109,7 @@
 							<a class="collapse-item" href="<?= base_url('admin/section') ?>">Section</a>
 							<a class="collapse-item" href="<?= base_url('admin/jabatan') ?>">Jabatan</a>
 							<a class="collapse-item" href="<?= base_url('admin/unit') ?>">Unit</a>
+							<a class="collapse-item" href="<?= base_url('admin/data_site') ?>">Site</a>
 						</div>
 					</div>
 				</li>

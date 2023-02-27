@@ -12,11 +12,12 @@ class Admin extends CI_Controller
         $this->load->model('section_m');
         $this->load->model('logistik_m');
         $this->load->model('karyawan_m');
-        $level_akun = $this->session->userdata('level');
-        if ($level_akun != "admin") {
-            $this->session->set_flashdata('login', 'n_login');
-            return redirect('login');
-        }
+        $this->load->model('site_m');
+        // $level_akun = $this->session->userdata('level');
+        // if ($level_akun != "admin") {
+        //     $this->session->set_flashdata('login', 'n_login');
+        //     return redirect('login');
+        // }
     }
 
 
@@ -392,5 +393,68 @@ class Admin extends CI_Controller
     }
     // end karyawan
 
+    public function update()
+    {
+        $data = array(
+            "l_kar" => "1",
+        );
 
+
+        $this->db->update('karyawan', $data);
+        echo "ok";
+    }
+
+    public function data_site()
+    {
+        $data['judul'] = 'Data site';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('site/data_site', $data);
+        $this->load->view('template/footer');
+    }
+    public function create_site()
+    {
+        $data['judul'] = 'Create site';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $this->load->view('template/header', $data);
+        $this->load->view('site/buat_site', $data);
+        $this->load->view('template/footer');
+    }
+    public function edit_site($id_site)
+    {
+        $data['judul'] = 'Update site';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->site_m->get_row_site($id_site);
+        $this->load->view('template/header', $data);
+        $this->load->view('site/edit_site', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function proses_tambah_site()
+    {
+        $data = array(
+            'nama_site' => $this->input->post('nama_site')
+        );
+        $this->db->insert('site', $data);
+        return redirect('admin/data_site');
+    }
+    public function proses_edit_site($id_site)
+    {
+        $data = array(
+            'nama_site' => $this->input->post('nama_site')
+        );
+        $this->db->where('id_site', $id_site);
+        $this->db->update('site', $data);
+        return redirect('admin/data_site');
+    }
+    public function delete_site($id_site)
+    {
+        $this->db->where('id_site', $id_site);
+        $this->db->delete('site');
+        return redirect('admin/data_site');
+    }
 }
