@@ -14,6 +14,8 @@ class Admin extends CI_Controller
         $this->load->model('karyawan_m');
         $this->load->model('site_m');
         $this->load->model('unit_m');
+
+        $this->load->library('cart');
         // $level_akun = $this->session->userdata('level');
         // if ($level_akun != "admin") {
         //     $this->session->set_flashdata('login', 'n_login');
@@ -522,5 +524,34 @@ class Admin extends CI_Controller
         $this->db->where('id_unit', $id_unit);
         $this->db->update('unit', $data);
         return redirect('admin/status_unit');
+    }
+    public function rs()
+    {
+        $data['keranjang'] = $this->cart->contents();
+    }
+    public function ProsesOrder($id_log)
+    {
+        $data_barang = array(
+            'id' => $id_log,
+            'price' => '',
+            'item' => $this->input->post('item'),
+            'name' => $this->session->userdata('nama_lengkap'),
+            'qty' => $this->input->post('qty'),
+            'tanggal' => date('Y-m-d')
+        );
+        $this->cart->insert($data_barang);
+
+        redirect('user/atk');
+    }
+
+    public function order_barang()
+    {
+        $data['judul'] = 'Data Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->logistik_m->get_all_log();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/order_barang', $data);
+        $this->load->view('template/footer');
     }
 }
