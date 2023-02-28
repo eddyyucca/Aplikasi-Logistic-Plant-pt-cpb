@@ -9,6 +9,14 @@ class Unit_m extends CI_Model
         $query = $this->db->get('unit');
         return $query->result();
     }
+    public function get_all_unit_bd()
+    {
+
+        $this->db->where('status_unit', 'perbaikan');
+
+        $query = $this->db->get('unit');
+        return $query->result();
+    }
     public function get_row_unit($id_unit)
     {
         $this->db->where('id_unit', $id_unit);

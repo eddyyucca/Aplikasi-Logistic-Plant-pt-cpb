@@ -20,9 +20,26 @@
                                                         <?= validation_errors() ?>
                                                         <form action="<?= base_url('admin/proses_tambah_unit')  ?>" method="POST" enctype="multipart/form-data">
                                                             <table class="table">
+
                                                                 <tr>
-                                                                    <td width=20%>Nama Site</td>
-                                                                    <td><input type="text" name="nama_unit" class="form-control" required placeholder="Nama Unit"></td>
+                                                                    <td width=20%>Kode Unit</td>
+                                                                    <td><input type="text" name="kode_unit" class="form-control" required placeholder="kode Unit"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Tipe Unit</td>
+                                                                    <td><input type="text" name="tipe" class="form-control" required placeholder="Tipe Unit"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Lokasi Site</td>
+
+                                                                    <td><select name="l_unit" class="form-control selectpicker" data-live-search="true">
+                                                                            <option value="">--PILIH Site--</option>
+                                                                            <?php foreach ($site as $s) { ?>
+                                                                                <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </td>
+
                                                                 </tr>
                                                                 <tr>
                                                                     <td>

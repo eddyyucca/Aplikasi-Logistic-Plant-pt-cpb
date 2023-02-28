@@ -85,12 +85,12 @@
 						<span>Barang Masuk</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="charts.html">
+					<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Status Unit</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="charts.html">
+					<a class="nav-link" href="<?= base_url('admin/order_unit') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Order Plant</span></a>
 				</li>

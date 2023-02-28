@@ -6,11 +6,14 @@ class logistik_m extends CI_Model
 
     public function get_all_log()
     {
+        $this->db->join('site', 'site.id_site = logistik.l_barang', 'left');
         $query = $this->db->get('logistik');
         return $query->result();
     }
     public function get_row_log($id_log)
     {
+        $this->db->join('site', 'site.id_site = logistik.l_barang', 'left');
+
         $this->db->where('id_log', $id_log);
         $query = $this->db->get('logistik');
         return $query->row();

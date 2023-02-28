@@ -18,6 +18,7 @@
                             <th>Part Number</th>
                             <th>Spasifikasi</th>
                             <th>Jumlah</th>
+                            <th>Lokasi Site</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,9 +31,10 @@
                                 <td><?= $x->mc; ?></td>
                                 <td><?= $x->spc; ?></td>
                                 <td><?= $x->qty; ?></td>
+                                <td><?= $x->nama_site; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/delete_jab/') . $x->id_log; ?>" class="btn btn-danger">Hapus</a>
-                                    <a href="<?= base_url('admin/edit_jabatan/') . $x->id_log; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="<?= base_url('admin/delete_log/') . $x->id_log; ?>" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url('admin/edit_log/') . $x->id_log; ?>" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>
                         <?php   } ?>

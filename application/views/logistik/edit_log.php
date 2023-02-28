@@ -12,17 +12,41 @@
                                         <!-- Page Heading -->
                                         <div class="card">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold ">Edit Jabatan</h6>
+                                                <h6 class="m-0 font-weight-bold ">Edit Inventory</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="container-fluid">
                                                         <?= validation_errors() ?>
-                                                        <form action="<?= base_url('admin/proses_edit_jab/') . $data->id_jab ?>" method="POST" enctype="multipart/form-data">
+                                                        <form action="<?= base_url('admin/proses_edit_log/') . $data->id_log ?>" method="POST" enctype="multipart/form-data">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <td width=20%>Nama Jabatan</td>
-                                                                    <td><input type="text" name="nama_jab" class="form-control" required placeholder="Nama Jabatan" value="<?= $data->nama_jab ?>"></td>
+                                                                    <td width=20%>Part Number</td>
+                                                                    <td><input type="text" name="mc" class="form-control" required placeholder="Part Number"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Spesifikasi</td>
+                                                                    <td><input type="text" name="spc" class="form-control" required placeholder="Part Spesifikasi"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Lokasi Rak Barang</td>
+                                                                    <td><input type="text" name="binloc" class="form-control" required placeholder="Part Lokasi"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Jumlah</td>
+                                                                    <td><input type="number" name="qty" class="form-control" required placeholder="Jumlah"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width=20%>Lokasi Site</td>
+
+                                                                    <td><select name="l_barang" class="form-control selectpicker" data-live-search="true">
+                                                                            <option value="">--PILIH Site--</option>
+                                                                            <?php foreach ($site as $s) { ?>
+                                                                                <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </td>
+
                                                                 </tr>
                                                                 <tr>
                                                                     <td>

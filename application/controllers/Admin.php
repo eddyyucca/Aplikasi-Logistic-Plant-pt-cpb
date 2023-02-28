@@ -64,6 +64,26 @@ class Admin extends CI_Controller
         $this->load->view('departement/create_departement', $data);
         $this->load->view('template/footer');
     }
+    public function create_log()
+    {
+        $data['judul'] = 'Create Departement';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['site'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('logistik/create_log', $data);
+        $this->load->view('template/footer');
+    }
+    public function edit_log($id_log)
+    {
+        $data['judul'] = 'Create Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_row_log($id_log);
+
+        $data['site'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('logistik/edit_log', $data);
+        $this->load->view('template/footer');
+    }
     public function edit_departement($id_dep)
     {
         $data['judul'] = 'Update Departement';
@@ -81,6 +101,70 @@ class Admin extends CI_Controller
         );
         $this->db->insert('departement', $data);
         return redirect('admin/departement');
+    }
+    public function proses_tambah_log()
+    {
+        $data = array(
+            'mc' => $this->input->post('mc'),
+            'spc' => $this->input->post('spc'),
+            'binloc' => $this->input->post('binloc'),
+            'l_barang' => $this->input->post('l_barang'),
+            'qty' => $this->input->post('qty'),
+        );
+        $this->db->insert('logistik', $data);
+        return redirect('admin/data_logistik');
+    }
+    public function proses_tambah_unit()
+    {
+        $data = array(
+            'kode_unit' => $this->input->post('kode_unit'),
+            'tipe' => $this->input->post('tipe'),
+            'status_unit' => "ready",
+            'l_unit' => $this->input->post('l_unit'),
+
+        );
+        $this->db->insert('unit', $data);
+        return redirect('admin/data_unit');
+    }
+    public function proses_edit_unit($id_unit)
+    {
+        $data = array(
+            'kode_unit' => $this->input->post('kode_unit'),
+            'tipe' => $this->input->post('tipe'),
+            'l_unit' => $this->input->post('l_unit'),
+
+        );
+
+        $this->db->where('id_unit', $id_unit);
+
+        $this->db->update('unit', $data);
+        return redirect('admin/data_unit');
+    }
+    public function proses_unit_rusak($id_unit)
+    {
+        $data = array(
+            'status_unit' => "rusak",
+
+
+        );
+
+        $this->db->where('id_unit', $id_unit);
+        $this->db->update('unit', $data);
+        return redirect('admin/status_unit');
+    }
+    public function proses_edit_log($id_log)
+    {
+        $data = array(
+            'mc' => $this->input->post('mc'),
+            'spc' => $this->input->post('spc'),
+            'binloc' => $this->input->post('binloc'),
+            'l_barang' => $this->input->post('l_barang'),
+            'qty' => $this->input->post('qty'),
+        );
+
+        $this->db->where('id_log', $id_log);
+        $this->db->update('logistik', $data);
+        return redirect('admin/data_logistik');
     }
     public function proses_edit_dep($id_dep)
     {
@@ -227,49 +311,7 @@ class Admin extends CI_Controller
     // karyawan
 
 
-    public function search_data_karyawan()
-    {
-        $perpage = 8;
-        $offset = $this->uri->segment(1);
 
-        $cari = $this->input->post('cari');
-
-        $data['data'] = $this->karyawan_m->cari_data($perpage, $offset, $cari)->result();
-
-        $config['base_url'] = site_url('admin/search_data_karyawan');
-        $config['total_rows'] = $this->karyawan_m->getRow($cari)->num_rows();
-        $config['per_page'] = $perpage;
-        // Membuat Style pagination untuk BootStrap v4
-        $config['first_link']       = 'First';
-        $config['last_link']        = 'Last';
-        $config['next_link']        = 'Next';
-        $config['prev_link']        = 'Prev';
-        $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close']   = '</ul></nav></div>';
-        $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-        $config['num_tag_close']    = '</span></li>';
-        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-        $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-        $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-        $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['prev_tagl_close']  = '</span>Next</li>';
-        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-        $config['first_tagl_close'] = '</span></li>';
-        $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-        $config['last_tagl_close']  = '</span></li>';
-
-        $this->pagination->initialize($config);
-
-        //end
-
-        $data['judul'] = 'Data Karyawan';
-        $data['nama'] = $this->session->userdata('nama');
-
-        $this->load->view('template/header', $data);
-        $this->load->view('karyawan/data_karyawan');
-        $this->load->view('template/footer');
-    }
     public function add_karyawan()
     {
         // dep,sec,jab
@@ -335,63 +377,8 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('pesan', 'ubah');
         return redirect('admin/karyawan');
     }
-    public function import()
-    {
 
-        $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
-        if (isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mimes)) {
-            $arr_file = explode('.', $_FILES['file']['name']);
-            $extension = end($arr_file);
-            if ('csv' == $extension) {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-            } elseif ('xls' == $extension) {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-
-            $spreadsheet = $reader->load($_FILES['file']['tmp_name']);
-            $sheetData = $spreadsheet->getActiveSheet()->toArray();
-            if (!empty($sheetData)) {
-                for ($i = 1; $i < count($sheetData); $i++) {
-                    // $cek = $this->karyawan_m->cek_nik(115);
-                    // $cek = $this->karyawan_m->cek_nik(($sheetData[$i][0]));
-
-                    $nik = $sheetData[$i][0];
-                    $nama = $sheetData[$i][1];
-                    $section = $sheetData[$i][3];
-                    $jabatan = $sheetData[$i][5];
-                    $departement = $sheetData[$i][7];
-                    // looping insert data
-                    $data = array(
-                        'nik' => $nik,
-                        'nama' => $nama,
-                        'section' => $section,
-                        'jabatan' => $jabatan,
-                        'departement' => $departement,
-                        'password' => md5('12345678'),
-                        'level' => 'user',
-                    );
-
-                    $this->db->insert('karyawan', $data);
-                }
-            }
-        }
-        $this->session->set_flashdata('pesan', 'import');
-        return redirect('admin/data_karyawan');
-    }
-    public function upload_config($path)
-    {
-        if (!is_dir($path))
-            mkdir($path, 0777, TRUE);
-        $config['upload_path']         = './' . $path;
-        $config['allowed_types']     = 'csv|CSV|xlsx|XLSX|xls|XLS';
-        $config['max_filename']         = '255';
-        $config['encrypt_name']     = TRUE;
-        $config['max_size']         = 4096;
-        $this->load->library('upload', $config);
-    }
     // end karyawan
 
     public function update()
@@ -469,11 +456,32 @@ class Admin extends CI_Controller
         $this->load->view('unit/data_unit', $data);
         $this->load->view('template/footer');
     }
+    public function status_unit()
+    {
+        $data['judul'] = 'Data unit';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->get_all_unit();
+        $this->load->view('template/header', $data);
+        $this->load->view('unit/status_unit', $data);
+        $this->load->view('template/footer');
+    }
+    public function order_unit()
+    {
+        $data['judul'] = 'Data unit';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->get_all_unit_bd();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/unit', $data);
+        $this->load->view('template/footer');
+    }
     public function create_unit()
     {
         $data['judul'] = 'Create unit';
         $data['nama'] = $this->session->userdata('nama');
 
+        $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
         $this->load->view('unit/buat_unit', $data);
         $this->load->view('template/footer');
@@ -482,34 +490,37 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Update unit';
         $data['nama'] = $this->session->userdata('nama');
-
+        $data['site'] = $this->site_m->get_all_site();
         $data['data'] = $this->unit_m->get_row_unit($id_unit);
         $this->load->view('template/header', $data);
         $this->load->view('unit/edit_unit', $data);
         $this->load->view('template/footer');
     }
 
-    public function proses_tambah_unit()
-    {
-        $data = array(
-            'nama_unit' => $this->input->post('nama_unit')
-        );
-        $this->db->insert('unit', $data);
-        return redirect('admin/data_unit');
-    }
-    public function proses_edit_unit($id_unit)
-    {
-        $data = array(
-            'nama_unit' => $this->input->post('nama_unit')
-        );
-        $this->db->where('id_unit', $id_unit);
-        $this->db->update('unit', $data);
-        return redirect('admin/data_unit');
-    }
+
+
     public function delete_unit($id_unit)
     {
         $this->db->where('id_unit', $id_unit);
         $this->db->delete('unit');
         return redirect('admin/data_unit');
+    }
+    public function unit_bd($id_unit)
+    {
+        $data = array(
+            'status_unit' => "perbaikan",
+        );
+        $this->db->where('id_unit', $id_unit);
+        $this->db->update('unit', $data);
+        return redirect('admin/status_unit');
+    }
+    public function unit_ready($id_unit)
+    {
+        $data = array(
+            'status_unit' => "ready",
+        );
+        $this->db->where('id_unit', $id_unit);
+        $this->db->update('unit', $data);
+        return redirect('admin/status_unit');
     }
 }

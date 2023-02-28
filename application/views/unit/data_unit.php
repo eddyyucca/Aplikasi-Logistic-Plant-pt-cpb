@@ -16,6 +16,7 @@
                         <tr>
                             <th>No</th>
                             <th>Unit</th>
+                            <th>tipe</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -25,11 +26,11 @@
                         foreach ($data as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
-                                <td><?= $x->nama_unit; ?></td>
                                 <td><?= $x->kode_unit; ?></td>
+                                <td><?= $x->tipe; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/delete_site/') . $x->id_unit; ?>" class="btn btn-danger">Hapus</a>
-                                    <a href="<?= base_url('admin/edit_site/') . $x->id_unit; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="<?= base_url('admin/delete_unit/') . $x->id_unit; ?>" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url('admin/edit_unit/') . $x->id_unit; ?>" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>
                         <?php   } ?>
