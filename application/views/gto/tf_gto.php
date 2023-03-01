@@ -33,21 +33,23 @@
                     </tbody>
                 </table>
                 <hr>
-                <tr>
-                    <td>
-                        Trasfer Ke :
-                    </td>
-                    <td>
-                        <select name="l_unit" class="form-control selectpicker" data-live-search="true">
-                            <option value="">--PILIH Site--</option>
-                            <?php foreach ($site as $s) { ?>
-                                <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-                <hr>
-                <a href="" class="btn btn-primary">Transfer</a>
+                <form action="<?= base_url('admin/cart_gto_tf') ?>" method="post">
+                    <tr>
+                        <td>
+                            Trasfer Ke :
+                        </td>
+                        <td>
+                            <select name="id_site" class="form-control selectpicker" data-live-search="true">
+                                <option value="">--PILIH Site--</option>
+                                <?php foreach ($site as $s) { ?>
+                                    <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <hr>
+                    <button class="btn btn-primary">Transfer</button>
+                </form>
             </div>
         </div>
     </div>

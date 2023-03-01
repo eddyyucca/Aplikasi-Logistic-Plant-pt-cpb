@@ -631,6 +631,31 @@ class Admin extends CI_Controller
         // var_dump($x);
         redirect('admin/gto');
     }
+    public function cart_gto_tf()
+    {
+        $site =  $this->input->post('id_site');
+        $keranjang = $this->cart->contents();
+        $kode_gto = date('ymdhsi');
+        foreach ($keranjang as $x) {
+
+            $data = array(
+                'barang' => $x['name'],
+                'jumlah' => $x['qty'],
+                'kode_gto' => $kode_gto,
+            );
+            $this->db->insert('gto', $data);
+        }
+        $data2 = array(
+            'status_gto' => "pending",
+            'kode_gto_status' => $kode_gto,
+            'tujuan' => $site,
+        );
+        $this->db->insert('gto_status', $data2);
+        redirect('admin/gto');
+    }
+
+
+
 
     public function order_barang()
     {
