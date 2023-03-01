@@ -14,7 +14,6 @@ class Admin extends CI_Controller
         $this->load->model('karyawan_m');
         $this->load->model('site_m');
         $this->load->model('unit_m');
-
         $this->load->library('cart');
         // $level_akun = $this->session->userdata('level');
         // if ($level_akun != "admin") {
@@ -114,6 +113,19 @@ class Admin extends CI_Controller
         $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
         $this->load->view('gto/data_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function tf_gto()
+    {
+        $data['site'] = $this->site_m->get_all_site();
+        $data['level'] = $this->session->userdata('level');
+        $data['judul'] = 'GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_all_log();
+        $data['keranjang'] = $this->cart->contents();
+        $data['site'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/tf_gto', $data);
         $this->load->view('template/footer');
     }
     public function edit_departement($id_dep)
@@ -605,18 +617,19 @@ class Admin extends CI_Controller
     public function cart_gto()
     {
 
-        $data_barang = array(
+        $data = array(
             'id' => $this->input->post('id_barang'),
-            'price' => $this->input->post('id_barang'),
-            'item' => $this->input->post('id_barang'),
-            'name' => $this->input->post('id_barang'),
+            'price' => '',
+            'item' => $this->input->post('spc'),
+            'name' => $this->input->post('mc'),
             'id_barang' => $this->input->post('id_barang'),
             'qty' => $this->input->post('qty'),
             'tanggal' => date('Y-m-d'),
         );
-        $x = $this->cart->insert($data_barang);
-        var_dump($x);
-        // redirect('admin/gto');
+        $this->cart->insert($data);
+        // print_r($this->cart->contents());
+        // var_dump($x);
+        redirect('admin/gto');
     }
 
     public function order_barang()

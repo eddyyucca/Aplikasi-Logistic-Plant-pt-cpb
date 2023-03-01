@@ -18,18 +18,24 @@
                                                 <div class="row">
                                                     <div class="container-fluid">
                                                         <?= validation_errors() ?>
-                                                        <form action="<?= base_url('admin/cart_gto')  ?>" method="POST" enctype="multipart/form-data">
+                                                        <form action="<?= base_url('admin/cart_gto')  ?>" method="POST">
                                                             <table class="table">
                                                                 <tr>
                                                                     <td width=20%>Nama Barang</td>
                                                                     <td>
                                                                         <input type="text" value="<?= $data->mc . "-" . $data->spc ?>" class="form-control" disabled placeholder="Nama Barang">
                                                                         <input type="hidden" name="id_barang" value="<?= $data->id_log ?>" class="form-control" required placeholder="Nama Barang">
+                                                                        <input type="hidden" name="mc" value="<?= $data->mc ?>" class="form-control" required placeholder="Nama Barang">
+                                                                        <input type="hidden" name="spc" value="<?= $data->spc ?>" class="form-control" required placeholder="Nama Barang">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td width=20%>Qty</td>
+                                                                    <td><input type="number" name="qty" class="form-control" value="<?= $data->qty ?>" disabled></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td width=20%>Jumlah Barang</td>
-                                                                    <td><input type="number" name="jumlah" class="form-control" required placeholder="Jumlah Barang"></td>
+                                                                    <td><input type="number" name="qty" class="form-control" required placeholder="Jumlah Barang"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>

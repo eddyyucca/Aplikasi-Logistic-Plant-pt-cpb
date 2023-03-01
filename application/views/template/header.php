@@ -81,7 +81,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Barang Masuk</span></a>
+						<span>Barang Masuk 0</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">
@@ -246,7 +246,7 @@
 								<li class="nav-item">
 									<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
-										<span>Barang Masuk</span></a>
+										<span>Barang Masuk 0</span></a>
 								</li>
 
 								<li class="nav-item">
@@ -522,7 +522,7 @@
 															<li class="nav-item">
 																<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 																	<i class="fas fa-fw fa-thumbs-up"></i>
-																	<span>Barang Masuk</span></a>
+																	<span>Barang Masuk 0</span></a>
 															</li>
 															<li class="nav-item">
 																<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">

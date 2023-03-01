@@ -6,10 +6,7 @@
             </h6>
         </div>
         <div class="card-body">
-            <div class="container">
-                <a href="<?= base_url('admin/tf_gto') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Transfer ke Site (<?php echo count($keranjang); ?>)</a>
-                <hr>
-            </div>
+
             <div class="table-responsive">
                 <div class="container">
                 </div>
@@ -18,31 +15,39 @@
                         <tr>
                             <th>No</th>
                             <th>Part Number</th>
-                            <th>Spasifikasi</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
+                            <th>QTY</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $nomor = 1;
-                        foreach ($data as $x) { ?>
+                        foreach ($keranjang as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
-                                <td><?= $x->mc; ?></td>
-                                <td><?= $x->spc; ?></td>
-                                <td><?= $x->qty; ?></td>
-                                <td align="center">
-                                    <?php if ($x->qty <= "0") {
-                                        echo "barang Habis";
-                                    } else { ?>
-                                        <a href="<?= base_url('admin/order/') . $x->id_log; ?>" class="btn btn-primary">Transfer</a>
-                                    <?php } ?>
+                                <td><?= $x['item'] . "-" . $x['name'] ?></td>
+                                <td><?= $x['qty']; ?></td>
                                 </td>
                             </tr>
                         <?php   } ?>
                     </tbody>
                 </table>
+                <hr>
+                <tr>
+                    <td>
+                        Trasfer Ke :
+                    </td>
+                    <td>
+                        <select name="l_unit" class="form-control selectpicker" data-live-search="true">
+                            <option value="">--PILIH Site--</option>
+                            <?php foreach ($site as $s) { ?>
+                                <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <hr>
+                <a href="" class="btn btn-primary">Transfer</a>
             </div>
         </div>
     </div>
