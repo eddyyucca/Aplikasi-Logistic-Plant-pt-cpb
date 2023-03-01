@@ -6,6 +6,10 @@
             </h6>
         </div>
         <div class="card-body">
+            <div class="container">
+                <a href="<?= base_url('admin/lakukan_transfer') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Transfer ke Site (<?php echo count($keranjang); ?>)</a>
+                <hr>
+            </div>
             <div class="table-responsive">
                 <div class="container">
                 </div>
@@ -16,7 +20,6 @@
                             <th>Part Number</th>
                             <th>Spasifikasi</th>
                             <th>Jumlah</th>
-                            <th>Lokasi Site</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -29,12 +32,11 @@
                                 <td><?= $x->mc; ?></td>
                                 <td><?= $x->spc; ?></td>
                                 <td><?= $x->qty; ?></td>
-                                <td><?= $x->nama_site; ?></td>
                                 <td align="center">
                                     <?php if ($x->qty <= "0") {
                                         echo "barang Habis";
                                     } else { ?>
-                                        <a href="<?= base_url('admin/order/') . $x->id_log; ?>" class="btn btn-primary">Order</a>
+                                        <a href="<?= base_url('admin/order/') . $x->id_log; ?>" class="btn btn-primary">Transfer</a>
                                     <?php } ?>
                                 </td>
                             </tr>

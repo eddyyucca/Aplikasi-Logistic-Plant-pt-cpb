@@ -26,13 +26,11 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data['data'] = false;
-
             $data['judul'] = 'Login';
             $this->load->view('auth/template_auth/header', $data);
             $this->load->view('auth/index', $data);
             $this->load->view('auth/template_auth/footer');
         } else {
-
             $nik = $this->input->post('nik');
             $password =  md5($this->input->post('password'));
             $cek = $this->auth_m->login($nik, $password);
@@ -46,10 +44,6 @@ class Auth extends CI_Controller
                     $this->session->set_userdata('level', $row->level);
                     if ($row->level == "admin") {
                         redirect('admin');
-                    } elseif ($row->level == "logistik") {
-                        redirect("logistik");
-                    } elseif ($row->level == "pc") {
-                        redirect('pc');
                     } else {
                         $this->session->set_flashdata('pesan', 'pass_salah');
                         return redirect('login');

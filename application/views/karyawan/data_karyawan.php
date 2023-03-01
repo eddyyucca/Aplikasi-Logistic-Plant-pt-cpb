@@ -7,16 +7,16 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="container">
-                    <!-- <a href="<?= base_url('admin/create_departement') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Departemen</a> -->
+                    <a href="<?= base_url('admin/create_karyawan') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Karyawan</a>
                     <hr>
                 </div>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Nik</th>
-                            <th>Site</th>
+                            <th>Dari Site</th>
+                            <th>Pengirim</th>
+                            <th>Tanggal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,8 +30,8 @@
                                 <td><?= $x->nik; ?></td>
                                 <td><?= $x->nama_site; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/delete_karyawan/') . $x->id_dep; ?>" class="btn btn-danger">Hapus</a>
-                                    <a href="<?= base_url('admin/edit_karyawan/') . $x->id_dep; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="<?= base_url('admin/delete_karyawan/') . $x->id_dep; ?>" class="btn btn-success">Lihat</a>
+
                                 </td>
                             </tr>
                         <?php   } ?>
