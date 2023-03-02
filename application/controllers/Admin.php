@@ -15,7 +15,7 @@ class Admin extends CI_Controller
         $this->load->model('site_m');
         $this->load->model('unit_m');
         $this->load->library('cart');
-        // $level_akun = $this->session->userdata('level');
+        $level_akun = $this->session->userdata('level');
         // if ($level_akun != "admin") {
         //     $this->session->set_flashdata('login', 'n_login');
         //     return redirect('login');
@@ -28,19 +28,23 @@ class Admin extends CI_Controller
         $data['judul'] = 'PT. CPB';
         $data['nama'] = $this->session->userdata('nama');
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        // var_dump($this->session->userdata('level'));
         $this->load->view('template/header', $data);
-        $this->load->view('home/home');
+        $this->load->view('home/home', $data);
         $this->load->view('template/footer');
     }
     // karyawan
     public function data_karyawan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['data'] = $this->karyawan_m->get_all_kar();
         $data['judul'] = 'Data Karyawan';
         $data['nama'] = $this->session->userdata('nama');
         $this->load->view('template/header', $data);
-        $this->load->view('karyawan/data_karyawan');
+        $this->load->view('karyawan/data_karyawan', $data);
         $this->load->view('template/footer');
     }
 
@@ -51,6 +55,8 @@ class Admin extends CI_Controller
     public function departement()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data Departement';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -62,6 +68,8 @@ class Admin extends CI_Controller
     public function create_departement()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create Departement';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -72,6 +80,8 @@ class Admin extends CI_Controller
     public function create_log()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create Departement';
         $data['nama'] = $this->session->userdata('nama');
         $data['site'] = $this->site_m->get_all_site();
@@ -82,6 +92,8 @@ class Admin extends CI_Controller
     public function edit_log($id_log)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create Logistik';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_row_log($id_log);
@@ -94,6 +106,8 @@ class Admin extends CI_Controller
     public function order($id_log)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create Logistik';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_row_log($id_log);
@@ -106,6 +120,8 @@ class Admin extends CI_Controller
     public function gto()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'GTO';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_all_log();
@@ -115,10 +131,26 @@ class Admin extends CI_Controller
         $this->load->view('gto/data_gto', $data);
         $this->load->view('template/footer');
     }
+    public function gti()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'GTI';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_all_log();
+        $data['keranjang'] = $this->cart->contents();
+        $data['site'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/data_gti', $data);
+        $this->load->view('template/footer');
+    }
     public function tf_gto()
     {
         $data['site'] = $this->site_m->get_all_site();
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'GTO';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_all_log();
@@ -131,6 +163,8 @@ class Admin extends CI_Controller
     public function edit_departement($id_dep)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update Departement';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -142,6 +176,8 @@ class Admin extends CI_Controller
     public function proses_tambah_dep()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_dep' => $this->input->post('nama_dep')
         );
@@ -151,6 +187,8 @@ class Admin extends CI_Controller
     public function proses_tambah_log()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'mc' => $this->input->post('mc'),
             'spc' => $this->input->post('spc'),
@@ -164,6 +202,8 @@ class Admin extends CI_Controller
     public function proses_tambah_unit()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'kode_unit' => $this->input->post('kode_unit'),
             'tipe' => $this->input->post('tipe'),
@@ -177,6 +217,8 @@ class Admin extends CI_Controller
     public function proses_edit_unit($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'kode_unit' => $this->input->post('kode_unit'),
             'tipe' => $this->input->post('tipe'),
@@ -192,6 +234,8 @@ class Admin extends CI_Controller
     public function proses_unit_rusak($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'status_unit' => "rusak",
 
@@ -205,6 +249,8 @@ class Admin extends CI_Controller
     public function proses_edit_log($id_log)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'mc' => $this->input->post('mc'),
             'spc' => $this->input->post('spc'),
@@ -220,6 +266,8 @@ class Admin extends CI_Controller
     public function proses_edit_dep($id_dep)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_dep' => $this->input->post('nama_dep')
         );
@@ -230,6 +278,8 @@ class Admin extends CI_Controller
     public function delete_departement($id_dep)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $this->db->where('id_dep', $id_dep);
         $this->db->delete('departement');
         return redirect('admin/departement');
@@ -240,6 +290,8 @@ class Admin extends CI_Controller
     public function section()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data Section';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -251,6 +303,8 @@ class Admin extends CI_Controller
     public function create_section()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create Section';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -261,6 +315,8 @@ class Admin extends CI_Controller
     public function edit_section($id_sec)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update Section';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -272,6 +328,8 @@ class Admin extends CI_Controller
     public function proses_tambah_section()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_section' => $this->input->post('nama_section')
         );
@@ -281,6 +339,8 @@ class Admin extends CI_Controller
     public function proses_edit_sec($id_sec)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_section' => $this->input->post('nama_section')
         );
@@ -291,6 +351,8 @@ class Admin extends CI_Controller
     public function delete_section($id_sec)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
 
         $this->db->where('id_sec', $id_sec);
         $this->db->delete('section');
@@ -302,6 +364,8 @@ class Admin extends CI_Controller
     public function jabatan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data jabatan';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -313,6 +377,8 @@ class Admin extends CI_Controller
     public function create_jabatan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create jabatan';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -323,6 +389,8 @@ class Admin extends CI_Controller
     public function edit_jabatan($id_jab)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update jabatan';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -334,6 +402,8 @@ class Admin extends CI_Controller
     public function proses_tambah_jab()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_jab' => $this->input->post('nama_jab')
         );
@@ -343,6 +413,8 @@ class Admin extends CI_Controller
     public function proses_edit_jab($id_jab)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_jab' => $this->input->post('nama_jab')
         );
@@ -353,6 +425,8 @@ class Admin extends CI_Controller
     public function delete_jab($id_jab)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
 
         $this->db->where('id_jab', $id_jab);
         $this->db->delete('jabatan');
@@ -364,10 +438,12 @@ class Admin extends CI_Controller
     public function data_logistik()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $l = $this->session->userdata('l_kar');
         $data['judul'] = 'Data Logistik';
         $data['nama'] = $this->session->userdata('nama');
 
-        $data['data'] = $this->logistik_m->get_all_log();
+        $data['data'] = $this->logistik_m->get_all_log2($l);
         $this->load->view('template/header', $data);
         $this->load->view('logistik/data_log', $data);
         $this->load->view('template/footer');
@@ -381,6 +457,8 @@ class Admin extends CI_Controller
     public function add_karyawan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         // dep,sec,jab
         $data['dep'] = $this->departement_m->get_all_dep();
         $data['sec'] = $this->section_m->get_all_sec();
@@ -395,6 +473,8 @@ class Admin extends CI_Controller
     public function view_karyawan($nik)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         // dep,sec,jab
 
         $data['data'] = $this->karyawan_m->get_view_kar($nik);
@@ -408,6 +488,8 @@ class Admin extends CI_Controller
     public function edit_karyawan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update Karyawan';
         $data['nama'] = $this->session->userdata('nama');
         $this->load->view('template/header', $data);
@@ -417,6 +499,8 @@ class Admin extends CI_Controller
     public function proses_tambah_karyawan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama_lengkap'),
@@ -440,6 +524,8 @@ class Admin extends CI_Controller
     public function proses_edit_karyawan()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_dep' => $this->input->post('nama_dep')
         );
@@ -455,11 +541,14 @@ class Admin extends CI_Controller
     public function update()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
-            "l_kar" => "1",
+            "level" => "logistik",
         );
 
 
+        $this->db->where('nik', '10034026');
         $this->db->update('karyawan', $data);
         echo "ok";
     }
@@ -467,6 +556,8 @@ class Admin extends CI_Controller
     public function data_site()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data site';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -478,6 +569,8 @@ class Admin extends CI_Controller
     public function create_site()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create site';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -488,6 +581,8 @@ class Admin extends CI_Controller
     public function edit_site($id_site)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update site';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -500,6 +595,8 @@ class Admin extends CI_Controller
     public function proses_tambah_site()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_site' => $this->input->post('nama_site')
         );
@@ -509,6 +606,8 @@ class Admin extends CI_Controller
     public function proses_edit_site($id_site)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'nama_site' => $this->input->post('nama_site')
         );
@@ -519,6 +618,8 @@ class Admin extends CI_Controller
     public function delete_site($id_site)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $this->db->where('id_site', $id_site);
         $this->db->delete('site');
         return redirect('admin/data_site');
@@ -527,6 +628,8 @@ class Admin extends CI_Controller
     public function data_unit()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data unit';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -538,6 +641,8 @@ class Admin extends CI_Controller
     public function status_unit()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data unit';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -549,6 +654,8 @@ class Admin extends CI_Controller
     public function order_unit()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data unit';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -560,6 +667,8 @@ class Admin extends CI_Controller
     public function create_unit()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Create unit';
         $data['nama'] = $this->session->userdata('nama');
 
@@ -571,6 +680,8 @@ class Admin extends CI_Controller
     public function edit_unit($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Update unit';
         $data['nama'] = $this->session->userdata('nama');
         $data['site'] = $this->site_m->get_all_site();
@@ -585,6 +696,8 @@ class Admin extends CI_Controller
     public function delete_unit($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $this->db->where('id_unit', $id_unit);
         $this->db->delete('unit');
         return redirect('admin/data_unit');
@@ -592,6 +705,8 @@ class Admin extends CI_Controller
     public function unit_bd($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'status_unit' => "perbaikan",
         );
@@ -602,6 +717,8 @@ class Admin extends CI_Controller
     public function unit_ready($id_unit)
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data = array(
             'status_unit' => "ready",
         );
@@ -612,6 +729,8 @@ class Admin extends CI_Controller
     public function rs()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['keranjang'] = $this->cart->contents();
     }
     public function cart_gto()
@@ -660,6 +779,8 @@ class Admin extends CI_Controller
     public function order_barang()
     {
         $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
         $data['judul'] = 'Data Logistik';
         $data['nama'] = $this->session->userdata('nama');
 

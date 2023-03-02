@@ -22,10 +22,10 @@
 										echo $this->session->flashdata('pesan')
 										?>
 										<?= validation_errors() ?>
-										<form class="user" action="<?= base_url('auth/auth_admin') ?>" method="POST">
+										<form class="user" action="<?= base_url('auth/auth') ?>" method="POST">
 											<div class="form-group mb-4">
 												<div class="form-group mb-4">
-													<input type="text" class="form-control" name="nip" placeholder="NIP Pegawai">
+													<input type="text" class="form-control" name="nik" placeholder="NIK Pegawai">
 												</div>
 											</div>
 											<div class="form-group mb-4">

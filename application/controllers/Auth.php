@@ -34,27 +34,22 @@ class Auth extends CI_Controller
             $nik = $this->input->post('nik');
             $password =  md5($this->input->post('password'));
             $cek = $this->auth_m->login($nik, $password);
-            $cek_nik = $this->auth_m->cek_nik($nik);
-
-            if ($cek_nik == true) {
-                if ($cek == true) {
-                    foreach ($cek as $row);
-                    $this->session->set_userdata('nik', $row->nik);
-                    $this->session->set_userdata('nama', $row->nama);
-                    $this->session->set_userdata('level', $row->level);
-                    if ($row->level == "admin") {
-                        redirect('admin');
-                    } else {
-                        $this->session->set_flashdata('pesan', 'pass_salah');
-                        return redirect('login');
-                    }
+            var_dump($cek);
+            if ($cek == true) {
+                foreach ($cek as $row);
+                $this->session->set_userdata('nik', $row->nik);
+                $this->session->set_userdata('nama', $row->nama);
+                $this->session->set_userdata('level', $row->level);
+                $this->session->set_userdata('l_kar', $row->l_kar);
+                if ($row->level == true) {
+                    redirect('admin');
                 } else {
                     $this->session->set_flashdata('pesan', 'pass_salah');
-                    return redirect('login');
+                    return redirect('auth');
                 }
-            } elseif ($cek_nik == false) {
-                $this->session->set_flashdata('pesan', 'nik_k');
-                return redirect('login');
+            } else {
+                $this->session->set_flashdata('pesan', 'pass_salah');
+                return redirect('auth');
             }
         }
     }
