@@ -726,13 +726,7 @@ class Admin extends CI_Controller
         $this->db->update('unit', $data);
         return redirect('admin/status_unit');
     }
-    public function rs()
-    {
-        $data['level'] = $this->session->userdata('level');
-        $data['lokasi_k'] = $this->session->userdata('l_kar');
 
-        $data['keranjang'] = $this->cart->contents();
-    }
     public function cart_gto()
     {
 
@@ -761,6 +755,7 @@ class Admin extends CI_Controller
                 'barang' => $x['name'],
                 'jumlah' => $x['qty'],
                 'kode_gto' => $kode_gto,
+
             );
             $this->db->insert('gto', $data);
         }
@@ -768,8 +763,11 @@ class Admin extends CI_Controller
             'status_gto' => "pending",
             'kode_gto_status' => $kode_gto,
             'tujuan' => $site,
+            'pengirim' =>  $this->session->userdata('nik'),
+            'waktu_tf' =>  date('Y-m-d'),
         );
         $this->db->insert('gto_status', $data2);
+        $this->cart->destroy();
         redirect('admin/gto');
     }
 
@@ -787,6 +785,48 @@ class Admin extends CI_Controller
         $data['data'] = $this->logistik_m->get_all_log();
         $this->load->view('template/header', $data);
         $this->load->view('plant/order_barang', $data);
+        $this->load->view('template/footer');
+    }
+    public function laporan_gto()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i($site);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/laporan_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function barang_masuk()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i($site);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/barang_masuk', $data);
+        $this->load->view('template/footer');
+    }
+    public function view_barang_masuk($kode)
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i2($kode);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/view_barang_masuk', $data);
         $this->load->view('template/footer');
     }
 }

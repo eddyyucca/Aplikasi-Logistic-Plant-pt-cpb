@@ -27,6 +27,30 @@ class logistik_m extends CI_Model
         $query = $this->db->get('logistik');
         return $query->row();
     }
+    public function gto_get($lokasi)
+    {
+        $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
+        $this->db->join('karyawan', 'karyawan.id_kar = gto_status.pengirim', 'left');
+        $this->db->where('pengirim', $lokasi);
+        $query = $this->db->get('gto_status');
+        return $query->row();
+    }
+    public function gto_get_i($site)
+    {
+        $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
+        $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');
+        $this->db->where('tujuan', $site);
+        $query = $this->db->get('gto_status');
+        return $query->result();
+    }
+    public function gto_get_i2($kode)
+    {
+        $this->db->join('logistik', 'logistik.mc = gto.barang', 'left');
+        // $this->db->where('tujuan', $site);
+        $this->db->where('kode_gto', $kode);
+        $query = $this->db->get('gto');
+        return $query->result();
+    }
 }
 
 /* End of file logistik_m.php */

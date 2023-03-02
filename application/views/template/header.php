@@ -68,19 +68,19 @@
 						<span>Inventory</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+					<a class="nav-link" href="<?= base_url('admin/gto') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Transfer Masuk</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+					<a class="nav-link" href="<?= base_url('admin/gti') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Transfer Keluar</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Barang Masuk 0</span></a>
+						<span>Barang Masuk</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">
@@ -233,17 +233,13 @@
 										<span>Inventory</span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+									<a class="nav-link" href="<?= base_url('admin/gto') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
-										<span>Transfer Masuk</span></a>
+										<span>Transfer Ke Site</span></a>
 								</li>
+
 								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
-										<i class="fas fa-fw fa-thumbs-up"></i>
-										<span>Transfer Keluar</span></a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
+									<a class="nav-link" href="<?= base_url('admin/barang_masuk') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
 										<span>Barang Masuk 0</span></a>
 								</li>
@@ -264,7 +260,6 @@
 										<div class="bg-white py-2 collapse-inner rounded">
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto') ?>">Laporan GTO</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gti') ?>">Laporan GTI</a>
-											<a class="collapse-item" href="<?= base_url('admin/laporan_gr') ?>">Laporan GR</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_pp') ?>">Laporan Permintaan Plant</a>
 										</div>
 									</div>
