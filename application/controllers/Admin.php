@@ -216,6 +216,45 @@ class Admin extends CI_Controller
         $this->load->view('departement/edit_departement', $data);
         $this->load->view('template/footer');
     }
+    public function laporan_plant()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Update Departement';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_order();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/laporan', $data);
+        $this->load->view('template/footer');
+    }
+    public function order_plant()
+    {
+        $data['level'] = $this->session->userdata('level');
+        // $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Update Departement';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_order();
+        $this->load->view('template/header', $data);
+        $this->load->view('logistik/order_plant', $data);
+        $this->load->view('template/footer');
+    }
+    public function laporan_pp()
+    {
+        $data['level'] = $this->session->userdata('level');
+        // $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Update Departement';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_order();
+        $this->load->view('template/header', $data);
+        $this->load->view('logistik/lp', $data);
+        $this->load->view('template/footer');
+    }
     public function proses_tambah_dep()
     {
         $data['level'] = $this->session->userdata('level');
@@ -782,6 +821,33 @@ class Admin extends CI_Controller
         $this->db->where('id_unit', $id_unit);
         $this->db->update('unit', $data);
         return redirect('admin/status_unit');
+    }
+    public function barang_dikirim($id_p, $jumlah, $qty, $id_log)
+    {
+
+        $data = array(
+            'status_o' => "diterima",
+        );
+        $this->db->where('id_p', $id_p);
+        $this->db->update('order', $data);
+        $hasil = $qty - $jumlah;
+        $data2 = array(
+            'qty' => $hasil,
+        );
+        $this->db->where('id_log', $id_log);
+        $this->db->update('logistik', $data2);
+        return redirect('admin/order_plant');
+    }
+    public function barang_ditolak($id_p)
+    {
+
+        $data = array(
+            'status_o' => "ditolak",
+        );
+        $this->db->where('id_p', $id_p);
+        $this->db->update('order', $data);
+
+        return redirect('admin/order_plant');
     }
 
     public function cart_gto()

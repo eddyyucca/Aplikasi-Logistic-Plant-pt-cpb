@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 03, 2023 at 01:41 PM
+-- Generation Time: Mar 03, 2023 at 02:20 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -1318,7 +1318,7 @@ CREATE TABLE `logistik` (
 --
 
 INSERT INTO `logistik` (`id_log`, `mc`, `spc`, `binloc`, `l_barang`, `qty`) VALUES
-(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '76'),
+(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '32'),
 (2, '445910-0080', 'DRYER', '102D0105', '1', '100'),
 (3, '447200-2700', 'COMPRESSOR', '103B0107', '1', '100'),
 (4, '447500-0520', 'EXVANSI', '101B0202', '1', '100'),
@@ -1647,7 +1647,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id_p`, `barang`, `jumlah`, `kode_unit`, `status_o`) VALUES
-(1, '146810-0431', '11', '2', 'pending');
+(1, '146810-0431', '11', '2', 'diterima');
 
 -- --------------------------------------------------------
 

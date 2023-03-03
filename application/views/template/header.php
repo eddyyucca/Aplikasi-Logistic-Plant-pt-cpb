@@ -245,7 +245,7 @@
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
+									<a class="nav-link" href="<?= base_url('admin/order_plant') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
 										<span>Order Plant</span></a>
 								</li>
@@ -389,6 +389,11 @@
 													<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
 														<i class="fas fa-fw fa-thumbs-up"></i>
 														<span>Order Plant</span></a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="<?= base_url('admin/laporan_plant') ?>">
+														<i class="fas fa-fw fa-thumbs-up"></i>
+														<span>laporan Plant</span></a>
 												</li>
 
 
