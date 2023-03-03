@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 02, 2023 at 01:44 PM
+-- Generation Time: Mar 03, 2023 at 01:41 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -84,7 +84,9 @@ CREATE TABLE `gto` (
 --
 
 INSERT INTO `gto` (`id_gto`, `barang`, `jumlah`, `kode_gto`) VALUES
-(16, '146810-0431', '2', '230302015105');
+(16, '146810-0431', '2', '230302015105'),
+(17, '146810-0431', '7', '230303014405'),
+(18, '447500-0520', '6', '230303014405');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ CREATE TABLE `gto_status` (
 --
 
 INSERT INTO `gto_status` (`id_gto_status`, `status_gto`, `kode_gto_status`, `tujuan`, `pengirim`, `waktu_tf`) VALUES
-(10, 'pending', '230302015105', '2', '10031393', '2023-03-02');
+(10, 'selesai', '230302015105', '2', '10031393', '2023-03-02');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,7 @@ CREATE TABLE `karyawan` (
 INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `nik`, `password`, `l_kar`, `level`) VALUES
 (2502, 'Arif Zulfikar Yusuf', '18', '5', '404', '10031392', '202cb962ac59075b964b07152d234b70', '1', 'logistik'),
 (2503, 'Chandra Dwi Saputra', '10', '5', '51', '10031393', '202cb962ac59075b964b07152d234b70', '2', 'logistik'),
-(2504, 'Ferry Sanada Utama', '10', '5', '75', '10031394', '202cb962ac59075b964b07152d234b70', '1', ''),
+(2504, 'Ferry Sanada Utama', '10', '5', '75', '10031394', '202cb962ac59075b964b07152d234b70', '1', 'plant'),
 (2505, 'Martinus Baso’', '18', '5', '404', '10031395', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2506, 'Umar', '18', '5', '404', '10031396', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2507, 'Laurentius Dwi Febryan', '10', '5', '58', '10031397', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -1316,7 +1318,7 @@ CREATE TABLE `logistik` (
 --
 
 INSERT INTO `logistik` (`id_log`, `mc`, `spc`, `binloc`, `l_barang`, `qty`) VALUES
-(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '100'),
+(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '76'),
 (2, '445910-0080', 'DRYER', '102D0105', '1', '100'),
 (3, '447200-2700', 'COMPRESSOR', '103B0107', '1', '100'),
 (4, '447500-0520', 'EXVANSI', '101B0202', '1', '100'),
@@ -1629,6 +1631,27 @@ INSERT INTO `logistik` (`id_log`, `mc`, `spc`, `binloc`, `l_barang`, `qty`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id_p` int(11) NOT NULL,
+  `barang` varchar(255) NOT NULL,
+  `jumlah` varchar(255) NOT NULL,
+  `kode_unit` varchar(255) NOT NULL,
+  `status_o` varchar(244) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id_p`, `barang`, `jumlah`, `kode_unit`, `status_o`) VALUES
+(1, '146810-0431', '11', '2', 'pending');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pekerjaan`
 --
 
@@ -1751,6 +1774,12 @@ ALTER TABLE `logistik`
   ADD PRIMARY KEY (`id_log`);
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id_p`);
+
+--
 -- Indexes for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
@@ -1800,7 +1829,7 @@ ALTER TABLE `gti`
 -- AUTO_INCREMENT for table `gto`
 --
 ALTER TABLE `gto`
-  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `gto_status`
@@ -1825,6 +1854,12 @@ ALTER TABLE `karyawan`
 --
 ALTER TABLE `logistik`
   MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=310;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pekerjaan`
