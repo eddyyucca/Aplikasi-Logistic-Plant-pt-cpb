@@ -33,7 +33,7 @@
                                 <td><?= $x->nama; ?></td>
                                 <td><?= $x->waktu_tf; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/cetak_gto/') . $x->id_gto_status; ?>" class="btn btn-primary">Cetak</a>
+                                    <a href="<?= base_url('admin/ctlaporan_gto/'); ?>" class="btn btn-primary">Cetak</a>
                                 </td>
                             </tr>
                         <?php   } ?>

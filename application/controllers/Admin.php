@@ -801,6 +801,20 @@ class Admin extends CI_Controller
         $this->load->view('gto/laporan_gto', $data);
         $this->load->view('template/footer');
     }
+    public function ctlaporan_gto()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i($site);
+        // $this->load->view('template/header', $data);
+        $this->load->view('gto/ct', $data);
+        // $this->load->view('template/footer');
+    }
     public function barang_masuk()
     {
         $data['level'] = $this->session->userdata('level');
@@ -816,6 +830,50 @@ class Admin extends CI_Controller
         $this->load->view('template/footer');
     }
     public function view_barang_masuk($kode)
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+        $data['kd'] = $kode;
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i2($kode);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/view_barang_masuk', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function terima($kd)
+    {
+        $x = $this->logistik_m->gto_get_i2($kd);
+
+        foreach ($x as $k) {
+            $qty = $k->qty;
+            $m = $k->jumlah;
+            $hasil = $qty - $m;
+            $data = array(
+                "qty" => $hasil,
+            );
+            $aa = $k->id_log;
+            // $a = $k->tujuan;
+
+            var_dump($data);
+            $this->db->where('id_log', $aa);
+            // $this->db->where('l_barang', $a);
+
+            $this->db->update('logistik', $data);
+            $data2 = array(
+                "status_gto" => "selesai",
+            );
+            $this->db->where('kode_gto_status', $k->kode_gto);
+            // $this->db->where('l_barang', $a);
+
+            $this->db->update('gto_status', $data2);
+            redirect('admin/laporan_gto');
+        }
+    }
+    public function permintaan_mekanik($kode)
     {
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');

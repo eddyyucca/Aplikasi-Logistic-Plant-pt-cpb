@@ -2,21 +2,22 @@
     <!-- Page Heading -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold "> Logistik GTO
+            <h6 class="m-0 font-weight-bold ">Laporan Logistik GTO
             </h6>
         </div>
         <div class="card-body">
-
             <div class="table-responsive">
                 <div class="container">
                 </div>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table border="1">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Part Number</th>
-                            <th>QTY</th>
-
+                            <th>Kode GTO</th>
+                            <th>Tujuan</th>
+                            <th>Pengirim</th>
+                            <th>Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,15 +26,16 @@
                         foreach ($data as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
-                                <td><?= $x->mc . "-" . $x->spc ?></td>
-                                <td><?= $x->jumlah ?></td>
-                                </td>
+                                <td><?= $x->status_gto; ?></td>
+                                <td><?= $x->kode_gto_status; ?></td>
+                                <td><?= $x->nama_site; ?></td>
+                                <td><?= $x->nama; ?></td>
+                                <td><?= $x->waktu_tf; ?></td>
+
                             </tr>
                         <?php   } ?>
                     </tbody>
                 </table>
-                <hr>
-                <a class="btn btn-primary" href="<?= base_url('admin/terima/' . $kd) ?>">Terima</a>
             </div>
         </div>
     </div>
@@ -50,3 +52,7 @@
         });
     </script>
 <?php endif; ?>
+
+<script>
+    window.print()
+</script>
