@@ -26,7 +26,7 @@
                             <tr>
                                 <td><?= $nomor++; ?></td>
                                 <td><?= $x->mc . "-" . $x->spc ?></td>
-                                <td><?= $x->qty ?></td>
+                                <td><?= $x->jumlah ?></td>
                                 </td>
                             </tr>
                         <?php   } ?>
