@@ -88,7 +88,7 @@
 						<span>Status Unit</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/order_unit') ?>">
+					<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
 						<i class="fas fa-fw fa-thumbs-up"></i>
 						<span>Order Plant</span></a>
 				</li>
@@ -241,11 +241,11 @@
 								<li class="nav-item">
 									<a class="nav-link" href="<?= base_url('admin/barang_masuk') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
-										<span>Barang Masuk 0</span></a>
+										<span>Barang Masuk </span></a>
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/order_unit') ?>">
+									<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
 										<span>Order Plant</span></a>
 								</li>
@@ -386,7 +386,7 @@
 														<span>Status Unit</span></a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" href="<?= base_url('admin/order_unit') ?>">
+													<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
 														<i class="fas fa-fw fa-thumbs-up"></i>
 														<span>Order Plant</span></a>
 												</li>

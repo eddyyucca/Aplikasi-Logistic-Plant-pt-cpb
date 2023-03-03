@@ -9,6 +9,11 @@ class Site_m extends CI_Model
         $query = $this->db->get('site');
         return $query->result();
     }
+    public function get_all_unit()
+    {
+        $query = $this->db->get('unit');
+        return $query->result();
+    }
     public function get_row_site($id_site)
     {
         $this->db->where('id_site', $id_site);

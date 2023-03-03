@@ -112,9 +112,23 @@ class Admin extends CI_Controller
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_row_log($id_log);
 
+        $data['unit'] = $this->site_m->get_all_unit();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/create_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function order2($id_log)
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Create Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_row_log($id_log);
+
         $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
-        $this->load->view('gto/create_gto', $data);
+        $this->load->view('plant/create_gto', $data);
         $this->load->view('template/footer');
     }
     public function gto()
@@ -129,6 +143,20 @@ class Admin extends CI_Controller
         $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
         $this->load->view('gto/data_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function orderan()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_all_log();
+        $data['keranjang'] = $this->cart->contents();
+        $data['site'] = $this->site_m->get_all_site();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/data_gto', $data);
         $this->load->view('template/footer');
     }
     public function gti()
@@ -158,6 +186,21 @@ class Admin extends CI_Controller
         $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
         $this->load->view('gto/tf_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function tf_unit()
+    {
+        $data['site'] = $this->site_m->get_all_site();
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['data'] = $this->logistik_m->get_all_log();
+        $data['keranjang'] = $this->cart->contents();
+        $data['unit'] = $this->site_m->get_all_unit();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/tf_gto', $data);
         $this->load->view('template/footer');
     }
     public function edit_departement($id_dep)
@@ -198,6 +241,20 @@ class Admin extends CI_Controller
         );
         $this->db->insert('logistik', $data);
         return redirect('admin/data_logistik');
+    }
+    public function proses_tambah_order()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data = array(
+            'barang' => $this->input->post('mc'),
+            'jumlah' => $this->input->post('qty'),
+            'kode_unit' => $this->input->post('kode_unit'),
+            'status_o' => "pending",
+        );
+        $this->db->insert('order', $data);
+        return redirect('admin/order_barang2');
     }
     public function proses_tambah_unit()
     {
@@ -744,7 +801,7 @@ class Admin extends CI_Controller
         // var_dump($x);
         redirect('admin/gto');
     }
-    public function cart_gto_tf()
+    public function cart_order()
     {
         $site =  $this->input->post('id_site');
         $keranjang = $this->cart->contents();
@@ -761,20 +818,33 @@ class Admin extends CI_Controller
         }
         $data2 = array(
             'status_gto' => "pending",
-            'kode_gto_status' => $kode_gto,
-            'tujuan' => $site,
+            'kode_o' => $kode_gto,
+            'unit' => $site,
             'pengirim' =>  $this->session->userdata('nik'),
-            'waktu_tf' =>  date('Y-m-d'),
+            'tanggal_o' =>  date('Y-m-d'),
         );
         $this->db->insert('gto_status', $data2);
         $this->cart->destroy();
-        redirect('admin/gto');
+        redirect('admin/order_barang2');
     }
 
 
 
 
     public function order_barang()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->logistik_m->get_all_log();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/order_barang', $data);
+        $this->load->view('template/footer');
+    }
+    public function order_barang2()
     {
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
@@ -797,6 +867,20 @@ class Admin extends CI_Controller
         $data['nama'] = $this->session->userdata('nama');
         $lokasi = $this->session->userdata('nik');
         $data['data'] = $this->logistik_m->gto_get_i($site);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/laporan_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function laporan_gti()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_ii($site);
         $this->load->view('template/header', $data);
         $this->load->view('gto/laporan_gto', $data);
         $this->load->view('template/footer');

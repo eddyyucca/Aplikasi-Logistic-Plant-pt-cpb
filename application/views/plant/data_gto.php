@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="container">
-                <a href="<?= base_url('admin/tf_gto') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Transfer ke Site (<?php echo count($keranjang); ?>)</a>
+                <a href="<?= base_url('admin/tf_unit') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Transfer ke Site (<?php echo count($keranjang); ?>)</a>
                 <hr>
             </div>
             <div class="table-responsive">

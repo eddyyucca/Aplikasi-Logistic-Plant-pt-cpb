@@ -41,8 +41,8 @@
                         <td>
                             <select name="id_site" class="form-control selectpicker" data-live-search="true">
                                 <option value="">--PILIH Site--</option>
-                                <?php foreach ($site as $s) { ?>
-                                    <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                                <?php foreach ($unit as $s) { ?>
+                                    <option value="<?= $s->id_unit ?>"><?= $s->kode_unit ?></option>
                                 <?php } ?>
                             </select>
                         </td>

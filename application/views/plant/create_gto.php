@@ -12,13 +12,13 @@
                                         <!-- Page Heading -->
                                         <div class="card">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold ">GTO Inventory</h6>
+                                                <h6 class="m-0 font-weight-bold "> Inventory</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="container-fluid">
                                                         <?= validation_errors() ?>
-                                                        <form action="<?= base_url('admin/cart_gto')  ?>" method="POST">
+                                                        <form action="<?= base_url('admin/proses_tambah_order')  ?>" method="POST">
                                                             <table class="table">
                                                                 <tr>
                                                                     <td width=20%>Nama Barang</td>
@@ -36,6 +36,17 @@
                                                                 <tr>
                                                                     <td width=20%>Jumlah Barang</td>
                                                                     <td><input type="number" name="qty" class="form-control" required placeholder="Jumlah Barang"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>unit</td>
+                                                                    <td>
+                                                                        <select name="kode_unit" class="form-control selectpicker" data-live-search="true">
+                                                                            <option value="">--PILIH Unit--</option>
+                                                                            <?php foreach ($unit as $s) { ?>
+                                                                                <option value="<?= $s->id_unit ?>"><?= $s->kode_unit ?></option>
+                                                                            <?php } ?>
+                                                                        </select>
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
