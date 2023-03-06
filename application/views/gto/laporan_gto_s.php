@@ -2,21 +2,23 @@
     <!-- Page Heading -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold ">Data Karyawan</h6>
+            <h6 class="m-0 font-weight-bold "> Logistik GTO
+            </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <div class="container">
-                    <a href="<?= base_url('admin/create_karyawan') ?>" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Karyawan</a>
-                    <hr>
                 </div>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Nik</th>
-                            <th>Nama Site</th>
+                            <th>Part Number</th>
+                            <th>Kode GTO</th>
+                            <th>Tujuan</th>
+                            <th>Pengirim</th>
+                            <th>Tanggal</th>
+                            <th>Penerima</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -26,12 +28,14 @@
                         foreach ($data as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
-                                <td><?= $x->nama; ?></td>
-                                <td><?= $x->nik; ?></td>
+                                <td><?= $x->status_gto; ?></td>
+                                <td><?= $x->kode_gto_status; ?></td>
                                 <td><?= $x->nama_site; ?></td>
+                                <td><?= $x->nama; ?></td>
+                                <td><?= $x->waktu_tf; ?></td>
+                                <td><?= $x->penerima; ?></td>
                                 <td align="center">
-                                    <a href="<?= base_url('admin/delete_karyawan/') . $x->nik; ?>" class="btn btn-success">Hapus</a>
-                                    <a href="<?= base_url('admin/edit_karyawan/') . $x->nik; ?>" class="btn btn-success">edit</a>
+                                    <a href="<?= base_url('admin/ctlaporan_gto_s/' . $x->kode_gto_status); ?>" class="btn btn-primary">Cetak</a>
                                 </td>
                             </tr>
                         <?php   } ?>

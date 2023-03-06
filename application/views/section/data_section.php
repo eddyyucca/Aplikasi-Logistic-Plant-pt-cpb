@@ -28,7 +28,6 @@
                                 <td><?= $x->nama_sec; ?></td>
                                 <td align="center">
 
-                                    <button class="second">Second Alert</button>
                                     <a href="<?= base_url('admin/delete_section/') . $x->id_sec; ?>" class="btn btn-danger">Hapus</a>
                                     <a href="<?= base_url('admin/edit_section/') . $x->id_sec; ?>" class="btn btn-primary">Edit</a>
                                 </td>

@@ -2,22 +2,37 @@
     <!-- Page Heading -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold ">Laporan Logistik GTO
+            <h6 class="m-0 font-weight-bold "> Logistik GTO
             </h6>
         </div>
+        <h1 align="center">Permintaan Pengiriman Barang</h1>
         <div class="card-body">
+            <table>
+                <tr>
+                    <td>Tujuan</td>
+                    <td>:</td>
+                    <td><?= $data2->nama_site ?></td>
+                </tr>
+                <tr>
+                    <td>Pengirim</td>
+                    <td>:</td>
+                    <td><?= $data2->nama ?></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>:</td>
+                    <td><?= $data2->status_gto ?></td>
+                </tr>
+            </table>
             <div class="table-responsive">
                 <div class="container">
                 </div>
-                <table border="1">
+                <table border="1" align="center">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Part Number</th>
-                            <th>Kode GTO</th>
-                            <th>Tujuan</th>
-                            <th>Pengirim</th>
-                            <th>Tanggal</th>
+                            <th>QTY</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,16 +41,15 @@
                         foreach ($data as $x) { ?>
                             <tr>
                                 <td><?= $nomor++; ?></td>
-                                <td><?= $x->status_gto; ?></td>
-                                <td><?= $x->kode_gto_status; ?></td>
-                                <td><?= $x->nama_site; ?></td>
-                                <td><?= $x->nama; ?></td>
-                                <td><?= $x->waktu_tf; ?></td>
-
+                                <td><?= $x->mc . "-" . $x->spc ?></td>
+                                <td><?= $x->qty; ?></td>
+                                </td>
                             </tr>
                         <?php   } ?>
                     </tbody>
                 </table>
+                <hr>
+
             </div>
         </div>
     </div>
@@ -43,16 +57,6 @@
 
 <?php if ($this->session->flashdata('flash_message')) : ?>
     <script>
-        swal({
-            title: "Done",
-            text: "<?php echo $this->session->flashdata('flash_message'); ?>",
-            timer: 1500,
-            showConfirmButton: false,
-            type: 'success'
-        });
+        window.print()
     </script>
 <?php endif; ?>
-
-<script>
-    window.print()
-</script>

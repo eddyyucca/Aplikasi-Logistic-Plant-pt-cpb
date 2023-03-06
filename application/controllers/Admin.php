@@ -47,6 +47,22 @@ class Admin extends CI_Controller
         $this->load->view('karyawan/data_karyawan', $data);
         $this->load->view('template/footer');
     }
+    public function create_karyawan()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+
+        $data['site'] = $this->site_m->get_all_site();
+        $data['departement'] = $this->departement_m->get_all_dep();
+        $data['section'] = $this->section_m->get_all_sec();
+        $data['jabatan'] = $this->jabatan_m->get_all_jab();
+        $data['judul'] = 'Data Karyawan';
+        $data['nama'] = $this->session->userdata('nama');
+        $this->load->view('template/header', $data);
+        $this->load->view('karyawan/create_karyawan', $data);
+        $this->load->view('template/footer');
+    }
 
 
     // end karyawan
@@ -111,8 +127,7 @@ class Admin extends CI_Controller
         $data['judul'] = 'Create Logistik';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_row_log($id_log);
-
-        $data['unit'] = $this->site_m->get_all_unit();
+        $data['unit'] = $this->site_m->get_all_unit_r();
         $this->load->view('template/header', $data);
         $this->load->view('plant/create_gto', $data);
         $this->load->view('template/footer');
@@ -128,7 +143,7 @@ class Admin extends CI_Controller
 
         $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
-        $this->load->view('plant/create_gto', $data);
+        $this->load->view('gto/create_gto', $data);
         $this->load->view('template/footer');
     }
     public function gto()
@@ -194,7 +209,7 @@ class Admin extends CI_Controller
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
 
-        $data['judul'] = 'GTO';
+        $data['judul'] = 'Unit';
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_all_log();
         $data['keranjang'] = $this->cart->contents();
@@ -221,7 +236,7 @@ class Admin extends CI_Controller
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
 
-        $data['judul'] = 'Update Departement';
+        $data['judul'] = 'Laporan Plant';
         $data['nama'] = $this->session->userdata('nama');
 
         $data['data'] = $this->departement_m->get_order();
@@ -247,7 +262,7 @@ class Admin extends CI_Controller
         $data['level'] = $this->session->userdata('level');
         // $data['lokasi_k'] = $this->session->userdata('l_kar');
 
-        $data['judul'] = 'Update Departement';
+        $data['judul'] = 'Laporan Permintaan Plant';
         $data['nama'] = $this->session->userdata('nama');
 
         $data['data'] = $this->departement_m->get_order();
@@ -280,6 +295,20 @@ class Admin extends CI_Controller
         );
         $this->db->insert('logistik', $data);
         return redirect('admin/data_logistik');
+    }
+    public function proses_tambah_order_gto()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data = array(
+            'barang' => $this->input->post('mc'),
+            'jumlah' => $this->input->post('qty'),
+            // 'kode_unit' => $this->input->post('kode_unit'),
+            'status_o' => "pending",
+        );
+        $this->db->insert('order', $data);
+        return redirect('admin/order_barang2');
     }
     public function proses_tambah_order()
     {
@@ -566,30 +595,22 @@ class Admin extends CI_Controller
         $this->load->view('karyawan/input_karyawan');
         $this->load->view('template/footer');
     }
-    public function view_karyawan($nik)
+
+    public function edit_karyawan($nik)
     {
+        $data['data'] = $this->karyawan_m->get_row_nik($nik);
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
 
         // dep,sec,jab
-
-        $data['data'] = $this->karyawan_m->get_view_kar($nik);
-
-        $data['judul'] = 'Add Karyawan';
-        $data['nama'] = $this->session->userdata('nama');
-        $this->load->view('template/header', $data);
-        $this->load->view('karyawan/view_karyawan');
-        $this->load->view('template/footer');
-    }
-    public function edit_karyawan()
-    {
-        $data['level'] = $this->session->userdata('level');
-        $data['lokasi_k'] = $this->session->userdata('l_kar');
-
+        $data['site'] = $this->site_m->get_all_site();
+        $data['departement'] = $this->departement_m->get_all_dep();
+        $data['section'] = $this->section_m->get_all_sec();
+        $data['jabatan'] = $this->jabatan_m->get_all_jab();
         $data['judul'] = 'Update Karyawan';
         $data['nama'] = $this->session->userdata('nama');
         $this->load->view('template/header', $data);
-        $this->load->view('karyawan/input_karyawan');
+        $this->load->view('karyawan/edit_karyawan', $data);
         $this->load->view('template/footer');
     }
     public function proses_tambah_karyawan()
@@ -599,36 +620,50 @@ class Admin extends CI_Controller
 
         $data = array(
             'nik' => $this->input->post('nik'),
-            'nama' => $this->input->post('nama_lengkap'),
-            'jk' => $this->input->post('jk'),
-            'tempat' => $this->input->post('tempat'),
-            'tanggal_lahir' => $this->input->post('ttl'),
-            'alamat' => $this->input->post('alamat'),
-            'agama' => $this->input->post('agama'),
-            'email' => $this->input->post('email'),
-            'telpon' => $this->input->post('telpon'),
+            'nama' => $this->input->post('nama'),
             'section' => $this->input->post('section'),
             'jabatan' => $this->input->post('jabatan'),
             'departement' => $this->input->post('departement'),
-            // 'foto' => $this->input->post('foto'),
+            'l_kar' => $this->input->post('l_kar'),
+            'password' => md5($this->input->post('password')),
             'level' => "user",
         );
         $this->db->insert('karyawan', $data);
         $this->session->set_flashdata('pesan', 'buat');
         return redirect('admin/data_karyawan');
     }
-    public function proses_edit_karyawan()
+    public function proses_edit_karyawan($nik)
     {
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
 
         $data = array(
-            'nama_dep' => $this->input->post('nama_dep')
+            'nik' => $this->input->post('nik'),
+            'nama' => $this->input->post('nama'),
+            'section' => $this->input->post('section'),
+            'jabatan' => $this->input->post('jabatan'),
+            'departement' => $this->input->post('departement'),
+            'l_kar' => $this->input->post('l_kar'),
+            'password' => md5($this->input->post('password')),
+            'level' => "user",
         );
-        $this->db->where('id_dep', $id_dep);
-        $this->db->update('departement', $data);
-        $this->session->set_flashdata('pesan', 'ubah');
-        return redirect('admin/karyawan');
+
+        $this->db->where('nik', $nik);
+        $this->db->update('karyawan', $data);
+        $this->session->set_flashdata('pesan', 'buat');
+        return redirect('admin/data_karyawan');
+    }
+    public function delete_karyawan($nik)
+    {
+        $this->db->where('nik', $nik);
+        $this->db->delete('karyawan');
+        return redirect('admin/data_karyawan');
+    }
+    public function delete_log($id_log)
+    {
+        $this->db->where('id_log', $id_log);
+        $this->db->delete('logistik');
+        return redirect('admin/data_logistik');
     }
 
 
@@ -893,6 +928,32 @@ class Admin extends CI_Controller
         $this->cart->destroy();
         redirect('admin/order_barang2');
     }
+    public function cart_gto_tf()
+    {
+        $tujuan =  $this->input->post('tujuan');
+        $keranjang = $this->cart->contents();
+        $kode_gto = date('ymdhsi');
+        foreach ($keranjang as $x) {
+
+            $data = array(
+                'barang' => $x['name'],
+                'jumlah' => $x['qty'],
+                'kode_gto' => $kode_gto,
+
+            );
+            $this->db->insert('gto', $data);
+        }
+        $data2 = array(
+            'status_gto' => "pending",
+            'kode_gto_status' => $kode_gto,
+            'tujuan' => $tujuan,
+            'pengirim' =>  $this->session->userdata('nik'),
+            'waktu_tf' =>  date('Y-m-d'),
+        );
+        $this->db->insert('gto_status', $data2);
+        $this->cart->destroy();
+        redirect('admin/laporan_gto');
+    }
 
 
 
@@ -931,10 +992,24 @@ class Admin extends CI_Controller
 
         $data['judul'] = 'Data GTO';
         $data['nama'] = $this->session->userdata('nama');
-        $lokasi = $this->session->userdata('nik');
+        // $lokasi = $this->session->userdata('nik');
         $data['data'] = $this->logistik_m->gto_get_i($site);
         $this->load->view('template/header', $data);
         $this->load->view('gto/laporan_gto', $data);
+        $this->load->view('template/footer');
+    }
+    public function laporan_gto_selesai()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        // $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_ii($site);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/laporan_gto_s', $data);
         $this->load->view('template/footer');
     }
     public function laporan_gti()
@@ -951,7 +1026,7 @@ class Admin extends CI_Controller
         $this->load->view('gto/laporan_gto', $data);
         $this->load->view('template/footer');
     }
-    public function ctlaporan_gto()
+    public function ctlaporan_gto($kode)
     {
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
@@ -960,9 +1035,25 @@ class Admin extends CI_Controller
         $data['judul'] = 'Data GTO';
         $data['nama'] = $this->session->userdata('nama');
         $lokasi = $this->session->userdata('nik');
-        $data['data'] = $this->logistik_m->gto_get_i($site);
+        $data['data'] = $this->logistik_m->gto_get_i2($kode);
+        $data['data2'] = $this->logistik_m->gto_get2($kode);
         // $this->load->view('template/header', $data);
         $this->load->view('gto/ct', $data);
+        // $this->load->view('template/footer');
+    }
+    public function ctlaporan_gto_s($kode)
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_i2($kode);
+        $data['data2'] = $this->logistik_m->gto_get2($kode);
+        // $this->load->view('template/header', $data);
+        $this->load->view('gto/ct_selesai', $data);
         // $this->load->view('template/footer');
     }
     public function barang_masuk()

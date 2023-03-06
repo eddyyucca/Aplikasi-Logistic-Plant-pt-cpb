@@ -36,7 +36,7 @@
                                     <?php if ($x->qty <= "0") {
                                         echo "barang Habis";
                                     } else { ?>
-                                        <a href="<?= base_url('admin/order/') . $x->id_log; ?>" class="btn btn-primary">Transfer</a>
+                                        <a href="<?= base_url('admin/order2/') . $x->id_log; ?>" class="btn btn-primary">Transfer</a>
                                     <?php } ?>
                                 </td>
                             </tr>

@@ -18,19 +18,14 @@
 
                             <tr>
                                 <td width=20%>Nama Lengkap</td>
-                                <td><input type="text" name="nama_lengkap" class="form-control" required placeholder="Nama Lengkap"></td>
+                                <td><input type="text" name="nama" class="form-control" required placeholder="Nama Lengkap"></td>
                             </tr>
-
-
-
-
-
                             <tr>
                                 <td>Departement</td>
                                 <td><select name="departement" class="form-control selectpicker" data-live-search="true">
                                         <option value="">--PILIH Departement--</option>
-                                        <?php foreach ($dep as $departement) { ?>
-                                            <option value="<?= $departement->id_dep ?>"><?= $departement->nama_dep ?></option>
+                                        <?php foreach ($departement as $dep) { ?>
+                                            <option value="<?= $dep->id_dep ?>"><?= $dep->nama_dep ?></option>
                                         <?php } ?>
                                     </select>
                                 </td>
@@ -39,8 +34,8 @@
                                 <td>Section</td>
                                 <td><select name="section" class="form-control  selectpicker" data-live-search="true">
                                         <option value="">--PILIH SECTION--</option>
-                                        <?php foreach ($sec as $section) { ?>
-                                            <option value="<?= $section->id_sec ?>"><?= $section->nama_sec ?></option>
+                                        <?php foreach ($section as $sec) { ?>
+                                            <option value="<?= $sec->id_sec ?>"><?= $sec->nama_sec ?></option>
                                         <?php } ?>
                                     </select></td>
                             </tr>
@@ -48,10 +43,25 @@
                                 <td>Jabatan</td>
                                 <td><select name="jabatan" class="form-control  selectpicker" data-live-search="true">
                                         <option value="">--PILIH JABATAN--</option>
-                                        <?php foreach ($jab as $jabatan) { ?>
-                                            <option value="<?= $jabatan->id_jab ?>"><?= $jabatan->nama_jab ?></option>
+                                        <?php foreach ($jabatan as $jab) { ?>
+                                            <option value="<?= $jab->id_jab ?>"><?= $jab->nama_jab ?></option>
                                         <?php } ?>
                                     </select></td>
+                            </tr>
+                            <tr>
+                                <td>Lokasi Site</td>
+                                <td><select name="l_kar" class="form-control selectpicker" data-live-search="true">
+                                        <option value="">--PILIH Site--</option>
+                                        <?php foreach ($site as $s) { ?>
+                                            <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td width=20%>Password</td>
+                                <td><input type="password" name="password" class="form-control" required placeholder="password"></td>
                             </tr>
 
                             <tr>

@@ -62,38 +62,6 @@
 					</a>
 
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Inventory</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/gto') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Transfer Masuk</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/gti') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Transfer Keluar</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Barang Masuk</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Status Unit</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="<?= base_url('admin/order_barang2') ?>">
-						<i class="fas fa-fw fa-thumbs-up"></i>
-						<span>Order Plant</span></a>
-				</li>
-
-
 				<!-- Divider -->
 				<hr class="sidebar-divider d-none d-md-block">
 				<li class="nav-item">
@@ -258,7 +226,8 @@
 									</a>
 									<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 										<div class="bg-white py-2 collapse-inner rounded">
-											<a class="collapse-item" href="<?= base_url('admin/laporan_gto') ?>">Laporan GTO</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_gto') ?>">Laporan GTO Pending</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_gto_selesai') ?>">Laporan GTO Diterima</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gti') ?>">Laporan GTI</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_pp') ?>">Laporan Permintaan Plant</a>
 										</div>
@@ -324,8 +293,8 @@
 											<li class="nav-item dropdown no-arrow">
 												<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													<span class="mr-2 d-none d-lg-inline text-gray-600">
-														<!-- <?= $nama; ?> -->
-														Dodi
+														<?= $nama; ?>
+
 													</span>
 													<i class="fas fa-user-circle"></i>
 												</a>
@@ -374,11 +343,7 @@
 												<!-- Nav Item - Pages Collapse Menu -->
 												<!-- Nav Item - Utilities Collapse Menu -->
 
-												<li class="nav-item">
-													<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
-														<i class="fas fa-fw fa-thumbs-up"></i>
-														<span>Inventory</span></a>
-												</li>
+
 
 												<li class="nav-item">
 													<a class="nav-link" href="<?= base_url('admin/status_unit') ?>">

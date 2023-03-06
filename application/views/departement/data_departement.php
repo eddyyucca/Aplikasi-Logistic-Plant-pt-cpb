@@ -27,7 +27,7 @@
                                 <td><?= $x->nama_dep; ?></td>
                                 <td align="center">
 
-                                    <button class="second">Second Alert</button>
+
                                     <a href="<?= base_url('admin/delete_departement/') . $x->id_dep; ?>" class="btn btn-danger">Hapus</a>
                                     <a href="<?= base_url('admin/edit_departement/') . $x->id_dep; ?>" class="btn btn-primary">Edit</a>
                                 </td>

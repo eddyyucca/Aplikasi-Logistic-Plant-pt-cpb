@@ -35,11 +35,19 @@ class logistik_m extends CI_Model
         $query = $this->db->get('gto_status');
         return $query->row();
     }
+    public function gto_get2($kode)
+    {
+        $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
+        $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');
+        $this->db->where('kode_gto_status', $kode);
+        $query = $this->db->get('gto_status');
+        return $query->row();
+    }
     public function gto_get_i($site)
     {
         $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
         $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');
-        $this->db->where('tujuan', $site);
+        // $this->db->where('tujuan', $site);
         $this->db->where('status_gto', 'pending');
         $query = $this->db->get('gto_status');
         return $query->result();
@@ -48,7 +56,7 @@ class logistik_m extends CI_Model
     {
         $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
         $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');
-        $this->db->where('tujuan', $site);
+        // $this->db->where('tujuan', $site);
         $this->db->where('status_gto', 'selesai');
         $query = $this->db->get('gto_status');
         return $query->result();

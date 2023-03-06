@@ -39,7 +39,7 @@
                             Trasfer Ke :
                         </td>
                         <td>
-                            <select name="id_site" class="form-control selectpicker" data-live-search="true">
+                            <select name="tujuan" class="form-control selectpicker" data-live-search="true">
                                 <option value="">--PILIH Site--</option>
                                 <?php foreach ($site as $s) { ?>
                                     <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>

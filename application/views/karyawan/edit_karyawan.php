@@ -9,28 +9,23 @@
             <div class="row">
                 <div class="container-fluid">
                     <?= validation_errors() ?>
-                    <form action="<?= base_url('admin/proses_tambah_karyawan')  ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url('admin/proses_edit_karyawan/') . $data->nik ?>" method="POST" enctype="multipart/form-data">
                         <table class="table">
                             <tr>
                                 <td width=20%>NIK</td>
-                                <td><input type="text" name="nik" class="form-control" required placeholder="NIK Lengkap"></td>
+                                <td><input type="text" name="nik" class="form-control" required placeholder="NIK Lengkap" value="<?= $data->nik ?>"></td>
                             </tr>
 
                             <tr>
                                 <td width=20%>Nama Lengkap</td>
-                                <td><input type="text" name="nama_lengkap" class="form-control" required placeholder="Nama Lengkap"></td>
+                                <td><input type="text" value="<?= $data->nama ?>" name="nama" class="form-control" required placeholder="Nama Lengkap"></td>
                             </tr>
-
-
-
-
-
                             <tr>
                                 <td>Departement</td>
                                 <td><select name="departement" class="form-control selectpicker" data-live-search="true">
                                         <option value="">--PILIH Departement--</option>
-                                        <?php foreach ($dep as $departement) { ?>
-                                            <option value="<?= $departement->id_dep ?>"><?= $departement->nama_dep ?></option>
+                                        <?php foreach ($departement as $dep) { ?>
+                                            <option value="<?= $dep->id_dep ?>"><?= $dep->nama_dep ?></option>
                                         <?php } ?>
                                     </select>
                                 </td>
@@ -39,8 +34,8 @@
                                 <td>Section</td>
                                 <td><select name="section" class="form-control  selectpicker" data-live-search="true">
                                         <option value="">--PILIH SECTION--</option>
-                                        <?php foreach ($sec as $section) { ?>
-                                            <option value="<?= $section->id_sec ?>"><?= $section->nama_sec ?></option>
+                                        <?php foreach ($section as $sec) { ?>
+                                            <option value="<?= $sec->id_sec ?>"><?= $sec->nama_sec ?></option>
                                         <?php } ?>
                                     </select></td>
                             </tr>
@@ -48,29 +43,27 @@
                                 <td>Jabatan</td>
                                 <td><select name="jabatan" class="form-control  selectpicker" data-live-search="true">
                                         <option value="">--PILIH JABATAN--</option>
-                                        <?php foreach ($jab as $jabatan) { ?>
-                                            <option value="<?= $jabatan->id_jab ?>"><?= $jabatan->nama_jab ?></option>
+                                        <?php foreach ($jabatan as $jab) { ?>
+                                            <option value="<?= $jab->id_jab ?>"><?= $jab->nama_jab ?></option>
                                         <?php } ?>
                                     </select></td>
                             </tr>
                             <tr>
-                                <td>Section</td>
-                                <td><select name="section" class="form-control  selectpicker" data-live-search="true" disabled>
-                                        <option value="">--PILIH SECTION--</option>
-                                        <?php foreach ($sec as $section) { ?>
-                                            <option value="<?= $section->id_sec ?>"><?= $section->nama_sec ?></option>
+                                <td>Lokasi Site</td>
+                                <td><select name="l_kar" class="form-control selectpicker" data-live-search="true">
+                                        <option value="">--PILIH Site--</option>
+                                        <?php foreach ($site as $s) { ?>
+                                            <option value="<?= $s->id_site ?>"><?= $s->nama_site ?></option>
                                         <?php } ?>
-                                    </select></td>
+                                    </select>
+                                </td>
+
                             </tr>
                             <tr>
-                                <td>Jabatan</td>
-                                <td><select name="jabatan" class="form-control  selectpicker" data-live-search="true" disabled>
-                                        <option value="">--PILIH JABATAN--</option>
-                                        <?php foreach ($jab as $jabatan) { ?>
-                                            <option value="<?= $jabatan->id_jab ?>"><?= $jabatan->nama_jab ?></option>
-                                        <?php } ?>
-                                    </select></td>
+                                <td width=20%>Password</td>
+                                <td><input type="password" name="password" class="form-control" required placeholder="password"></td>
                             </tr>
+
                             <tr>
                                 <td>
                                     <button class="btn btn-primary">Simpan</button>
