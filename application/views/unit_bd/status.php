@@ -18,27 +18,24 @@
                                                 <div class="row">
                                                     <div class="container-fluid">
                                                         <?= validation_errors() ?>
-                                                        <form action="<?= base_url('admin/proses_tambah_unit')  ?>" method="POST" enctype="multipart/form-data">
+                                                        <form action="<?= base_url('admin/proses_tambah_lap_unit')  ?>" method="POST" enctype="multipart/form-data">
                                                             <table class="table">
                                                                 <tr>
                                                                     <td width=20%>Keterangan</td>
                                                                     <td>
-                                                                        <input type="text" name="tipe" class="form-control" required placeholder="Tipe Unit">
-                                                                        <input type="hidden" value="<?= $unit->id_unit ?>" name="unit_bd" class="form-control" required placeholder="Tipe Unit">
+                                                                        <input type="text" name="ket" class="form-control" required placeholder="Tipe Unit">
+                                                                        <input type="hidden" value="<?= $id_unit ?>" name="unit_bd" class="form-control" required placeholder="Keterangan Unit">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td width=20%>Mekanik</td>
-
                                                                     <td>
-                                                                        <select name="tujuan" class="form-control selectpicker" data-live-search="true">
-                                                                            <option value="">--PILIH KARYAWAN--</option>
-                                                                            <?php foreach ($karyawan as $s) { ?>
-                                                                                <option value="<?= "(" . $s->nama . "-" . $s->nik . ")" ?>"><?= $s->nama_site ?></option>
+                                                                        <select data-placeholder="Begin typing a name to filter..." multiple class="form-control selectpicker" data-live-search="true" name="perbaikan[]" multiple="multiple">
+                                                                            <?php foreach ($karyawan as $d) { ?>
+                                                                                <option value="<?= $d->nama ?>,"><?= $d->nama ?> </option>
                                                                             <?php } ?>
                                                                         </select>
                                                                     </td>
-
                                                                 </tr>
                                                                 <tr>
                                                                     <td>

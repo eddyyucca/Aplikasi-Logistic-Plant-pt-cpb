@@ -196,6 +196,7 @@
        }
      });
    </script>
+   <script src="<?= base_url('assets') ?>/select/js/bootstrap-select.min.js"></script>
 
    <!-- Page level custom scripts -->
    <script src="js/demo/chart-area-demo.js"></script>

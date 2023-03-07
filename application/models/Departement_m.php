@@ -19,6 +19,26 @@ class Departement_m extends CI_Model
         $query = $this->db->get('order');
         return $query->result();
     }
+    public function get_order_ditolak()
+    {
+        $this->db->join('logistik', 'logistik.mc = order.barang', 'left');
+        $this->db->join('unit', 'unit.id_unit = order.kode_unit', 'left');
+
+        $this->db->where('status_o', 'ditolak');
+
+        $query = $this->db->get('order');
+        return $query->result();
+    }
+    public function get_order_l($id_p)
+    {
+        $this->db->join('logistik', 'logistik.mc = order.barang', 'left');
+        $this->db->join('unit', 'unit.id_unit = order.kode_unit', 'left');
+
+        $this->db->where('id_p', $id_p);
+
+        $query = $this->db->get('order');
+        return $query->result();
+    }
     public function get_row_dep($id_dep)
     {
         $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');

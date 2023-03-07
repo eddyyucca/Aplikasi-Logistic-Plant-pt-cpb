@@ -18,7 +18,9 @@
 	<link href="<?= base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<link href="<?= base_url('assets') ?>/css/profil.css" rel="stylesheet">
 	<!-- pop up -->
-	<!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'> -->
+	<link href="<?= base_url('assets') ?>/select/css/bootstrap-select.min.css" rel="stylesheet">
+	<!-- 
+	 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'> -->
 	<style>
 		.file {
 			visibility: hidden;
@@ -222,9 +224,11 @@
 										<div class="bg-white py-2 collapse-inner rounded">
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto') ?>">Laporan GTO Pending</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto_selesai') ?>">Laporan GTO Diterima</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_gto_ditolak') ?>">Laporan GTO Ditolak</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gti') ?>">Laporan GTI</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_logistik') ?>">Laporan Logistik</a>
-											<a class="collapse-item" href="<?= base_url('admin/laporan_pp') ?>">Laporan Permintaan Plant</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_plant') ?>">Laporan Plant Diterima</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_plant') ?>">Laporan Plant Ditolak</a>
 										</div>
 									</div>
 								</li>
@@ -350,10 +354,21 @@
 														<i class="fas fa-fw fa-thumbs-up"></i>
 														<span>Order Plant</span></a>
 												</li>
+
 												<li class="nav-item">
 													<a class="nav-link" href="<?= base_url('admin/laporan_plant') ?>">
 														<i class="fas fa-fw fa-thumbs-up"></i>
 														<span>laporan Plant</span></a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="<?= base_url('admin/laporan_plant_ditolak') ?>">
+														<i class="fas fa-fw fa-thumbs-up"></i>
+														<span>laporan Plant Ditolak</span></a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="<?= base_url('admin/data_perbaikan') ?>">
+														<i class="fas fa-fw fa-thumbs-up"></i>
+														<span>laporan Perbaikan</span></a>
 												</li>
 
 

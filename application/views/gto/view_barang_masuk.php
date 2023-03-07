@@ -34,6 +34,7 @@
                 </table>
                 <hr>
                 <a class="btn btn-primary" href="<?= base_url('admin/terima/' . $kd) ?>">Terima</a>
+                <a class="btn btn-danger" href="<?= base_url('admin/ditolak/' . $kd) ?>">Ditolak</a>
             </div>
         </div>
     </div>

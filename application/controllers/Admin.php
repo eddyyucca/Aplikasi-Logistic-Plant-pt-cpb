@@ -218,6 +218,21 @@ class Admin extends CI_Controller
         $this->load->view('plant/tf_gto', $data);
         $this->load->view('template/footer');
     }
+    public function unit_status($id_unit)
+    {
+        $data['site'] = $this->site_m->get_all_site();
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $data['id_unit'] = $id_unit;
+        $data['judul'] = 'Unit';
+        $data['nama'] = $this->session->userdata('nama');
+        $data['karyawan'] = $this->karyawan_m->get_all_kar();
+        $data['keranjang'] = $this->cart->contents();
+        $data['unit'] = $this->site_m->get_all_unit();
+        $this->load->view('template/header', $data);
+        $this->load->view('unit_bd/status', $data);
+        $this->load->view('template/footer');
+    }
     public function edit_departement($id_dep)
     {
         $data['level'] = $this->session->userdata('level');
@@ -243,6 +258,58 @@ class Admin extends CI_Controller
         $this->load->view('template/header', $data);
         $this->load->view('plant/laporan', $data);
         $this->load->view('template/footer');
+    }
+    public function laporan_plant_ditolak()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Laporan Plant';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_order_ditolak();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/laporan', $data);
+        $this->load->view('template/footer');
+    }
+    public function cetak_laporan_permintaan_plant($id_p)
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Laporan Plant';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_order();
+        // $this->load->view('template/header', $data);
+        $this->load->view('plant/ct_laporan', $data);
+        // $this->load->view('template/footer');
+    }
+    public function data_perbaikan()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Laporan Plant';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->l_perbaikan();
+        $this->load->view('template/header', $data);
+        $this->load->view('unit_bd/data_perbaikan', $data);
+        $this->load->view('template/footer');
+    }
+    public function cetak_perbaikan()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Laporan Plant';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->unit_m->l_perbaikan();
+        // $this->load->view('template/header', $data);
+        $this->load->view('unit_bd/ct_data_perbaikan', $data);
+        // $this->load->view('template/footer');
     }
     public function order_plant()
     {
@@ -280,6 +347,29 @@ class Admin extends CI_Controller
         );
         $this->db->insert('departement', $data);
         return redirect('admin/departement');
+    }
+    public function proses_tambah_lap_unit()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $arr = $this->input->post('perbaikan');
+        $data = array(
+            'ket' => $this->input->post('ket'),
+            'perbaikan' => implode(" ", $arr),
+            'waktu_perbaikan' => date("Y-m-d"),
+            'unit_bd' => $this->input->post('unit_bd'),
+        );
+        $this->db->insert('laporan_unit', $data);
+
+        $data2 = array(
+            'status_unit' => "ready",
+        );
+        $id_unit = $this->input->post('unit_bd');
+        $this->db->where('id_unit', $id_unit);
+
+        $this->db->update('unit', $data2);
+
+        return redirect('admin/status_unit');
     }
     public function proses_tambah_log()
     {
@@ -1025,6 +1115,21 @@ class Admin extends CI_Controller
         $this->load->view('gto/laporan_gto_s', $data);
         $this->load->view('template/footer');
     }
+    public function laporan_gto_ditolak()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $site = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Data GTO';
+        $data['nama'] = $this->session->userdata('nama');
+        // $lokasi = $this->session->userdata('nik');
+        $data['data'] = $this->logistik_m->gto_get_ii_tolak($site);
+        $this->load->view('template/header', $data);
+        $this->load->view('gto/laporan_gto_s', $data);
+        $this->load->view('template/footer');
+    }
+
     public function laporan_gti()
     {
         $data['level'] = $this->session->userdata('level');
@@ -1126,6 +1231,17 @@ class Admin extends CI_Controller
             $this->db->update('gto_status', $data2);
             redirect('admin/laporan_gto');
         }
+    }
+    public function ditolak($kd)
+    {
+        $data2 = array(
+            "status_gto" => "ditolak",
+        );
+        $this->db->where('kode_gto_status', $kd);
+        // $this->db->where('l_barang', $a);
+
+        $this->db->update('gto_status', $data2);
+        redirect('admin/laporan_gto');
     }
     public function permintaan_mekanik($kode)
     {

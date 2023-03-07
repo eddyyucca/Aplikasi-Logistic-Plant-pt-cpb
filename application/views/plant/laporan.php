@@ -18,6 +18,7 @@
                             <th>Jumlah</th>
                             <th>Unit</th>
                             <th>status</th>
+                            <th>Cetak</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +31,9 @@
                                 <td><?= $x->jumlah; ?></td>
                                 <td><?= $x->kode_unit ?></td>
                                 <td><?= $x->status_o ?></td>
+                                <td>
+                                    <a href="<?= base_url('admin/cetak_laporan_permintaan_plant/') . $x->id_p; ?>" class="btn btn-primary">Cetak</a>
+                                </td>
                             </tr>
                         <?php   } ?>
                     </tbody>

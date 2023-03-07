@@ -9,6 +9,13 @@ class Unit_m extends CI_Model
         $query = $this->db->get('unit');
         return $query->result();
     }
+    public function l_perbaikan()
+    {
+        $this->db->join('unit', 'unit.id_unit = laporan_unit.unit_bd', 'left');
+
+        $query = $this->db->get('laporan_unit');
+        return $query->result();
+    }
     public function get_all_unit_bd()
     {
 

@@ -17,8 +17,7 @@
                             <th>Kode GTO</th>
                             <th>Tujuan</th>
                             <th>Pengirim</th>
-                            <th>Tanggal</th>
-                            <th>Penerima</th>
+                            <th>Tanggal</th>]
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -33,7 +32,6 @@
                                 <td><?= $x->nama_site; ?></td>
                                 <td><?= $x->nama; ?></td>
                                 <td><?= $x->waktu_tf; ?></td>
-                                <td><?= $x->penerima; ?></td>
                                 <td align="center">
                                     <a href="<?= base_url('admin/ctlaporan_gto_s/' . $x->kode_gto_status); ?>" class="btn btn-primary">Cetak</a>
                                 </td>

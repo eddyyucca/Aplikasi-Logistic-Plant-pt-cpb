@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 07, 2023 at 09:57 AM
+-- Generation Time: Mar 07, 2023 at 02:05 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -56,19 +56,6 @@ CREATE TABLE `gr` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gti`
---
-
-CREATE TABLE `gti` (
-  `id_gti` int(11) NOT NULL,
-  `barang` varchar(255) NOT NULL,
-  `jumlah` varchar(255) NOT NULL,
-  `kode_gti` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `gto`
 --
 
@@ -94,7 +81,9 @@ INSERT INTO `gto` (`id_gto`, `barang`, `jumlah`, `kode_gto`) VALUES
 (23, '146810-0431', '1', '230305083821'),
 (24, '445910-0080', '1', '230305083821'),
 (25, '146810-0431', '1', '230305083522'),
-(26, '445910-0080', '1', '230305083522');
+(26, '445910-0080', '1', '230305083522'),
+(27, '445910-0080', '1', '230307012031'),
+(28, '447200-2700', '2', '230307014534');
 
 -- --------------------------------------------------------
 
@@ -118,7 +107,9 @@ CREATE TABLE `gto_status` (
 
 INSERT INTO `gto_status` (`id_gto_status`, `status_gto`, `kode_gto_status`, `tujuan`, `pengirim`, `waktu_tf`, `penerima`) VALUES
 (10, 'selesai', '230302015105', '2', '10031393', '2023-03-02', 'herman saputra'),
-(11, 'selesai', '230305083522', '2', '10031392', '2023-03-05', '');
+(11, 'selesai', '230305083522', '2', '10031392', '2023-03-05', ''),
+(12, 'ditolak', '230307012031', '2', '10031392', '2023-03-07', ''),
+(13, 'pending', '230307014534', '1', '10031392', '2023-03-07', '');
 
 -- --------------------------------------------------------
 
@@ -1321,6 +1312,17 @@ CREATE TABLE `laporan_unit` (
   `ket` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `laporan_unit`
+--
+
+INSERT INTO `laporan_unit` (`id_lu`, `waktu_perbaikan`, `perbaikan`, `unit_bd`, `ket`) VALUES
+(1, '2023-03-07', 'Ursula Yesi Gusti Ayuputri', '2', 'bagus'),
+(2, '2023-03-07', 'Ursula Yesi Gusti Ayuputri', '2', 'bagus'),
+(3, '2023-03-07', 'Eddy Adha Saputra,', '2', 'ok'),
+(4, '2023-03-07', 'Deana Meyko Aji Ursula Yesi Gusti Ayuputri', '2', 'asas'),
+(5, '2023-03-07', 'Ridhani Pizi, Deana Meyko Aji,', '2', 'asas');
+
 -- --------------------------------------------------------
 
 --
@@ -1342,7 +1344,7 @@ CREATE TABLE `logistik` (
 
 INSERT INTO `logistik` (`id_log`, `mc`, `spc`, `binloc`, `l_barang`, `qty`) VALUES
 (1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '19'),
-(2, '445910-0080', 'DRYER', '102D0105', '1', '100'),
+(2, '445910-0080', 'DRYER', '102D0105', '1', '99'),
 (3, '447200-2700', 'COMPRESSOR', '103B0107', '1', '100'),
 (4, '447500-0520', 'EXVANSI', '101B0202', '1', '100'),
 (5, '447500-9220', 'EXPANTION VALVE', '101B0203', '1', '100'),
@@ -1740,8 +1742,8 @@ CREATE TABLE `unit` (
 --
 
 INSERT INTO `unit` (`id_unit`, `kode_unit`, `tipe`, `status_unit`, `l_unit`) VALUES
-(1, '11', 'sas', 'ready', '1'),
-(2, 'WL01', 'Loader', 'perbaikan', '1');
+(1, '11', 'sas', 'perbaikan', '1'),
+(2, 'WL01', 'Loader', 'ready', '1');
 
 --
 -- Indexes for dumped tables
@@ -1758,12 +1760,6 @@ ALTER TABLE `departement`
 --
 ALTER TABLE `gr`
   ADD PRIMARY KEY (`id_gr`);
-
---
--- Indexes for table `gti`
---
-ALTER TABLE `gti`
-  ADD PRIMARY KEY (`id_gti`);
 
 --
 -- Indexes for table `gto`
@@ -1848,22 +1844,16 @@ ALTER TABLE `gr`
   MODIFY `id_gr` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `gti`
---
-ALTER TABLE `gti`
-  MODIFY `id_gti` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `gto`
 --
 ALTER TABLE `gto`
-  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `gto_status`
 --
 ALTER TABLE `gto_status`
-  MODIFY `id_gto_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_gto_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jabatan`
@@ -1881,7 +1871,7 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT for table `laporan_unit`
 --
 ALTER TABLE `laporan_unit`
-  MODIFY `id_lu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_lu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `logistik`

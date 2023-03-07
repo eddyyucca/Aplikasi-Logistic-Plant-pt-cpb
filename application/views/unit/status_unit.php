@@ -33,7 +33,7 @@
                                     if ($x->status_unit == "ready") { ?>
                                         <a href="<?= base_url('admin/unit_bd/') . $x->id_unit ?>" class="btn btn-danger">Unit Rusak</a>
                                     <?php  } else { ?>
-                                        <a href="<?= base_url('admin/unit_ready/') . $x->id_unit ?>" class="btn btn-success">Unit Ready</a>
+                                        <a href="<?= base_url('admin/unit_status/') . $x->id_unit ?>" class="btn btn-success">Unit Ready</a>
                                     <?php
                                     }
                                     ?>
