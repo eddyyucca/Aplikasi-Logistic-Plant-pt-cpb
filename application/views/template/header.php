@@ -188,13 +188,7 @@
 								<!-- Nav Item - Pages Collapse Menu -->
 								<!-- Nav Item - Utilities Collapse Menu -->
 
-								<li class="nav-item">
-									<a class="nav-link" href="<?= base_url('admin/data_karyawan') ?>">
-										<i class="fas fa-fw fa-users"></i>
-										<span>Karyawan</span>
-									</a>
 
-								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="<?= base_url('admin/data_logistik') ?>">
 										<i class="fas fa-fw fa-thumbs-up"></i>
@@ -229,6 +223,7 @@
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto') ?>">Laporan GTO Pending</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto_selesai') ?>">Laporan GTO Diterima</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gti') ?>">Laporan GTI</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_logistik') ?>">Laporan Logistik</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_pp') ?>">Laporan Permintaan Plant</a>
 										</div>
 									</div>

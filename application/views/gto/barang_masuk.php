@@ -23,18 +23,22 @@
                     <tbody>
                         <?php
                         $nomor = 1;
-                        foreach ($data as $x) { ?>
-                            <tr>
-                                <td><?= $nomor++; ?></td>
-                                <td><?= $x->kode_gto_status; ?></td>
-                                <td><?= $x->nama_site; ?></td>
-                                <td><?= $x->nama; ?></td>
-                                <td><?= $x->waktu_tf; ?></td>
-                                <td align="center">
-                                    <a href="<?= base_url('admin/view_barang_masuk/') . $x->kode_gto_status; ?>" class="btn btn-primary">View</a>
-                                </td>
-                            </tr>
-                        <?php   } ?>
+                        foreach ($data as $x) {
+                            if ($x->tujuan == $lokasi_k) {
+                            } else {
+                        ?>
+                                <tr>
+                                    <td><?= $nomor++; ?></td>
+                                    <td><?= $x->kode_gto_status; ?></td>
+                                    <td><?= $x->nama_site; ?></td>
+                                    <td><?= $x->nama; ?></td>
+                                    <td><?= $x->waktu_tf; ?></td>
+                                    <td align="center">
+                                        <a href="<?= base_url('admin/view_barang_masuk/') . $x->kode_gto_status; ?>" class="btn btn-primary">View</a>
+                                    </td>
+                                </tr>
+                        <?php   }
+                        } ?>
                     </tbody>
                 </table>
             </div>

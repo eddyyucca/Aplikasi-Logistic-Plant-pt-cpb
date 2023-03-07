@@ -1,12 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class logistik_m extends CI_Model
+class Logistik_m extends CI_Model
 {
 
     public function get_all_log()
     {
         $this->db->join('site', 'site.id_site = logistik.l_barang', 'left');
+
+
+        $query = $this->db->get('logistik');
+        return $query->result();
+    }
+    public function get_all_logs($site)
+    {
+        $this->db->join('site', 'site.id_site = logistik.l_barang', 'left');
+
+        $this->db->where('l_barang', $site);
+
         $query = $this->db->get('logistik');
         return $query->result();
     }
@@ -64,6 +75,7 @@ class logistik_m extends CI_Model
     public function gto_get_i2($kode)
     {
         $this->db->join('logistik', 'logistik.mc = gto.barang', 'left');
+        $this->db->join('gto_status', 'gto_status.kode_gto_status = gto.kode_gto', 'left');
         // $this->db->where('tujuan', $site);
         $this->db->where('kode_gto', $kode);
         $query = $this->db->get('gto');

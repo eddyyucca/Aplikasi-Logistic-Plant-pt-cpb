@@ -16,9 +16,9 @@ class Site_m extends CI_Model
     }
     public function get_all_unit_r()
     {
-        
+
         $this->db->where('status_unit', "perbaikan");
-        
+
         $query = $this->db->get('unit');
         return $query->result();
     }

@@ -150,12 +150,12 @@ class Admin extends CI_Controller
     {
         $data['level'] = $this->session->userdata('level');
         $data['lokasi_k'] = $this->session->userdata('l_kar');
-
+        $site = $this->session->userdata('l_kar');
         $data['judul'] = 'GTO';
         $data['nama'] = $this->session->userdata('nama');
-        $data['data'] = $this->logistik_m->get_all_log();
+        $data['data'] = $this->logistik_m->get_all_logs($site);
         $data['keranjang'] = $this->cart->contents();
-        $data['site'] = $this->site_m->get_all_site();
+        $data['site'] = $this->site_m->get_all_site($site);
         $this->load->view('template/header', $data);
         $this->load->view('gto/data_gto', $data);
         $this->load->view('template/footer');
@@ -198,7 +198,7 @@ class Admin extends CI_Controller
         $data['nama'] = $this->session->userdata('nama');
         $data['data'] = $this->logistik_m->get_all_log();
         $data['keranjang'] = $this->cart->contents();
-        $data['site'] = $this->site_m->get_all_site();
+        // $data['site'] = $this->site_m->get_all_site();
         $this->load->view('template/header', $data);
         $this->load->view('gto/tf_gto', $data);
         $this->load->view('template/footer');
@@ -572,6 +572,19 @@ class Admin extends CI_Controller
         $this->load->view('template/header', $data);
         $this->load->view('logistik/data_log', $data);
         $this->load->view('template/footer');
+    }
+    public function laporan_logistik()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+        $l = $this->session->userdata('l_kar');
+        $data['judul'] = 'Data Logistik';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->logistik_m->get_all_log2($l);
+        // $this->load->view('template/header', $data);
+        $this->load->view('logistik/laporan_log', $data);
+        // $this->load->view('template/footer');
     }
     // end log
 
@@ -1079,7 +1092,7 @@ class Admin extends CI_Controller
         $data['judul'] = 'Data GTO';
         $data['nama'] = $this->session->userdata('nama');
         $lokasi = $this->session->userdata('nik');
-        $data['data'] = $this->logistik_m->gto_get_i2($kode);
+        $data['data'] = $this->logistik_m->gto_get_i2($kode, $site);
         $this->load->view('template/header', $data);
         $this->load->view('gto/view_barang_masuk', $data);
         $this->load->view('template/footer');

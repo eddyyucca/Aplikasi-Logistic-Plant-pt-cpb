@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 03, 2023 at 02:20 PM
+-- Generation Time: Mar 07, 2023 at 09:57 AM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -37,7 +37,7 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`id_dep`, `nama_dep`) VALUES
-(5, 'n');
+(6, 'SHE');
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,15 @@ CREATE TABLE `gto` (
 INSERT INTO `gto` (`id_gto`, `barang`, `jumlah`, `kode_gto`) VALUES
 (16, '146810-0431', '2', '230302015105'),
 (17, '146810-0431', '7', '230303014405'),
-(18, '447500-0520', '6', '230303014405');
+(18, '447500-0520', '6', '230303014405'),
+(19, '146810-0431', '1', '230305083020'),
+(20, '445910-0080', '1', '230305083020'),
+(21, '146810-0431', '1', '230305080821'),
+(22, '445910-0080', '1', '230305080821'),
+(23, '146810-0431', '1', '230305083821'),
+(24, '445910-0080', '1', '230305083821'),
+(25, '146810-0431', '1', '230305083522'),
+(26, '445910-0080', '1', '230305083522');
 
 -- --------------------------------------------------------
 
@@ -100,15 +108,17 @@ CREATE TABLE `gto_status` (
   `kode_gto_status` varchar(255) NOT NULL,
   `tujuan` varchar(255) NOT NULL,
   `pengirim` varchar(255) NOT NULL,
-  `waktu_tf` varchar(222) NOT NULL
+  `waktu_tf` varchar(222) NOT NULL,
+  `penerima` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gto_status`
 --
 
-INSERT INTO `gto_status` (`id_gto_status`, `status_gto`, `kode_gto_status`, `tujuan`, `pengirim`, `waktu_tf`) VALUES
-(10, 'selesai', '230302015105', '2', '10031393', '2023-03-02');
+INSERT INTO `gto_status` (`id_gto_status`, `status_gto`, `kode_gto_status`, `tujuan`, `pengirim`, `waktu_tf`, `penerima`) VALUES
+(10, 'selesai', '230302015105', '2', '10031393', '2023-03-02', 'herman saputra'),
+(11, 'selesai', '230305083522', '2', '10031392', '2023-03-05', '');
 
 -- --------------------------------------------------------
 
@@ -156,7 +166,7 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (2503, 'Chandra Dwi Saputra', '10', '5', '51', '10031393', '202cb962ac59075b964b07152d234b70', '2', 'logistik'),
 (2504, 'Ferry Sanada Utama', '10', '5', '75', '10031394', '202cb962ac59075b964b07152d234b70', '1', 'plant'),
 (2505, 'Martinus Baso’', '18', '5', '404', '10031395', '202cb962ac59075b964b07152d234b70', '1', ''),
-(2506, 'Umar', '18', '5', '404', '10031396', '202cb962ac59075b964b07152d234b70', '1', ''),
+(2506, 'Umar', '18', '5', '404', '10031396', '202cb962ac59075b964b07152d234b70', '1', 'admin'),
 (2507, 'Laurentius Dwi Febryan', '10', '5', '58', '10031397', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2508, 'Eli Setiawan', '18', '5', '404', '10031398', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2509, 'Jul Riski Ananda', '10', '5', '48', '10031399', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -174,7 +184,7 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (2521, 'Amor Sujatmiko', '33', '3', '404', '10031429', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2522, 'Yohanes Salombe', '3', '2', '10', '10031430', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2523, 'William', '31', '2', '404', '10031431', '202cb962ac59075b964b07152d234b70', '1', ''),
-(2524, 'Agung Dwi Rahmanto', '9', '1', '8', '10031432', '202cb962ac59075b964b07152d234b70', '1', ''),
+(2524, 'Agung Dwi Rahmanto', '', '', '', '100314321', '202cb962ac59075b964b07152d234b70', '', ''),
 (2525, 'Rusnawati', '27', '7', '88', '10031433', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2526, 'Ahmad Riadi', '2', '2', '2', '10031434', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2527, 'Johan Adi Saputro', '2', '2', '2', '10031435', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -410,7 +420,6 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (2757, 'Juwita Nur Hestia Thessen', '27', '7', '88', '10032211', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2758, 'Andi Rukman', '3', '2', '10', '10032222', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2759, 'Jeri Pandu Setiawan', '27', '6', '89', '10032224', '202cb962ac59075b964b07152d234b70', '1', ''),
-(2760, 'Safaruddin Rambe', '9', '1', '8', '10032226', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2761, 'Rodi', '2', '2', '2', '10032229', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2762, 'Arpandi', '2', '2', '2', '10032230', '202cb962ac59075b964b07152d234b70', '1', ''),
 (2763, 'Wahyu Nur Alamsah', '28', '5', '95', '10032234', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -662,9 +671,9 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (3009, 'Tunggul Panjaitan', '10', '5', '72', '10033213', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3010, 'Giman', '23', '5', '24', '10033216', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3011, 'Alvian Rizky Saputro', '27', '7', '100', '10033217', '202cb962ac59075b964b07152d234b70', '1', ''),
-(3012, 'Sumail Leman', '28', '5', '95', '10033219', '202cb962ac59075b964b07152d234b70', '1', '');
+(3012, 'Sumail Leman', '28', '5', '95', '10033219', '202cb962ac59075b964b07152d234b70', '1', ''),
+(3013, 'Muhammad Tulus Hartanto', '10', '5', '59', '10033220', '202cb962ac59075b964b07152d234b70', '1', '');
 INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `nik`, `password`, `l_kar`, `level`) VALUES
-(3013, 'Muhammad Tulus Hartanto', '10', '5', '59', '10033220', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3014, 'Utono', '10', '5', '34', '10033222', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3015, 'Praja Pratama', '10', '5', '72', '10033224', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3016, 'Dismas Bimantara', '10', '5', '72', '10033225', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -1172,9 +1181,9 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (3518, 'Febri Hariyandi', '43', '7', '404', '90003378', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3519, 'Rian Adi Rahman', '43', '7', '404', '90003379', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3520, 'Ahmad Rahmadani Saputra M.Ilha', '43', '7', '404', '90003380', '202cb962ac59075b964b07152d234b70', '1', ''),
-(3521, 'Martius Lawing', '43', '7', '404', '90003381', '202cb962ac59075b964b07152d234b70', '1', '');
+(3521, 'Martius Lawing', '43', '7', '404', '90003381', '202cb962ac59075b964b07152d234b70', '1', ''),
+(3522, 'Irwan Prasetya Gunawan', '43', '7', '404', '90003382', '202cb962ac59075b964b07152d234b70', '1', '');
 INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `nik`, `password`, `l_kar`, `level`) VALUES
-(3522, 'Irwan Prasetya Gunawan', '43', '7', '404', '90003382', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3523, 'Meril Jonsen Amos Ugang', '43', '7', '404', '90003383', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3524, 'Ajang', '43', '7', '404', '90003384', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3525, 'Andi', '43', '7', '404', '90003385', '202cb962ac59075b964b07152d234b70', '1', ''),
@@ -1294,9 +1303,23 @@ INSERT INTO `karyawan` (`id_kar`, `nama`, `jabatan`, `section`, `departement`, `
 (3639, 'Radiyan 9', '43', '7', '404', '90003719', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3640, 'sasa', '9', '9', '14', '111', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3641, 'tes user', '9', '8', '7', '123123', '202cb962ac59075b964b07152d234b70', '1', ''),
-(3642, 'eddy as', '12', '9', '', '666', '202cb962ac59075b964b07152d234b70', '1', ''),
 (3643, 'sasa', '12', '9', '8', '6660', '202cb962ac59075b964b07152d234b70', '1', ''),
-(3644, 'sasa', '12', '8', '12', '1313111', '202cb962ac59075b964b07152d234b70', '1', '');
+(3644, 'sasa', '12', '8', '12', '1313111', '202cb962ac59075b964b07152d234b70', '1', ''),
+(3646, 'dodi', '1', '1', '6', '666', '202cb962ac59075b964b07152d234b70', '1', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan_unit`
+--
+
+CREATE TABLE `laporan_unit` (
+  `id_lu` int(11) NOT NULL,
+  `waktu_perbaikan` varchar(255) NOT NULL,
+  `perbaikan` varchar(255) NOT NULL,
+  `unit_bd` varchar(255) NOT NULL,
+  `ket` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1318,13 +1341,12 @@ CREATE TABLE `logistik` (
 --
 
 INSERT INTO `logistik` (`id_log`, `mc`, `spc`, `binloc`, `l_barang`, `qty`) VALUES
-(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '32'),
+(1, '146810-0431', 'RESISTOR BLOWER', '102D0105', '1', '19'),
 (2, '445910-0080', 'DRYER', '102D0105', '1', '100'),
 (3, '447200-2700', 'COMPRESSOR', '103B0107', '1', '100'),
 (4, '447500-0520', 'EXVANSI', '101B0202', '1', '100'),
 (5, '447500-9220', 'EXPANTION VALVE', '101B0203', '1', '100'),
 (6, '447810-0150', 'RECEIVER VALVE/DRYER TC', '102D0101', '1', '100'),
-(7, '5/16ORINGR12', 'RECEIVER DRYER', '102D0102', '1', '100'),
 (8, 'FR134', 'FREON 134', '201A0101', '1', '100'),
 (9, 'JBC-0105', 'RECEIVER DRYER 3/8 ORING R134', '102D0103', '1', '100'),
 (10, 'JK445800-9070', 'BLOWER AC ASSY (DOUBLE BLOWER)', '102C0103', '1', '100'),
@@ -1768,6 +1790,12 @@ ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_kar`);
 
 --
+-- Indexes for table `laporan_unit`
+--
+ALTER TABLE `laporan_unit`
+  ADD PRIMARY KEY (`id_lu`);
+
+--
 -- Indexes for table `logistik`
 --
 ALTER TABLE `logistik`
@@ -1811,7 +1839,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `departement`
 --
 ALTER TABLE `departement`
-  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_dep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `gr`
@@ -1829,13 +1857,13 @@ ALTER TABLE `gti`
 -- AUTO_INCREMENT for table `gto`
 --
 ALTER TABLE `gto`
-  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_gto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `gto_status`
 --
 ALTER TABLE `gto_status`
-  MODIFY `id_gto_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_gto_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `jabatan`
@@ -1847,7 +1875,13 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_kar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3645;
+  MODIFY `id_kar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3647;
+
+--
+-- AUTO_INCREMENT for table `laporan_unit`
+--
+ALTER TABLE `laporan_unit`
+  MODIFY `id_lu` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `logistik`

@@ -45,19 +45,19 @@
                     </table>
 
                     <table border="1px" width="600px">
-                        <th>DEPARTEMEN REQUEST</th>
+                        <th>DEPARTEMEN LOGISTIK</th>
                     </table>
 
                     <table class="b">
                         <tr align="left" width="600">
                             <th>Date</th>
                             <th>:</th>
-                            <th><?= $data2->waktu_tf ?></th>
+                            <th><?= date('Y-m-d') ?></th>
                         </tr>
                         <tr align="left" width="600">
                             <th>SITE</th>
                             <th>:</th>
-                            <th> <?= $data2->nama_site ?>
+                            <th> cp2
                             </th>
                         </tr>
                     </table>
@@ -65,50 +65,33 @@
                     <table border=1 width="600px">
                         <thead>
                             <tr>
-                                <th colspan="6">SUMMARY OF REQUEST</th>
-                            </tr>
-                            <tr>
-                                <th>NO</th>
-                                <th>ITEM</th>
-                                <th>QTY</th>
-
+                                <th>No</th>
+                                <th>Part Number</th>
+                                <th>Spasifikasi</th>
+                                <th>Jumlah</th>
+                                <th>Lokasi Site</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <?php
                             $nomor = 1;
                             foreach ($data as $x) { ?>
                                 <tr>
                                     <td><?= $nomor++; ?></td>
-                                    <td><?= $x->mc . "-" . $x->spc ?></td>
+                                    <td><?= $x->mc; ?></td>
+                                    <td><?= $x->spc; ?></td>
                                     <td><?= $x->qty; ?></td>
-                                    </td>
+                                    <td><?= $x->nama_site; ?></td>
+
                                 </tr>
                             <?php   } ?>
                         </tbody>
                     </table>
                     <br>
-                    <table border="1" width="600px">
-                        <tr>
-                            <th>Request By,</th>
-                            <th>Acknowledge,</th>
-                            <th>Received by,</th>
-                        </tr>
-                        <tr>
-                            <th> <br><br><br> </th>
-                            <th> <br><br><br> </th>
-                            <th> <br><br><br> </th>
-                        </tr>
-                        <tr>
-                            <th>Dept Head</th>
-                            <th>LOG Dept Head</th>
-                            <th>Group Leader LOG</th>
-                        </tr>
-                    </table>
+
                     <br>
                     <table border=1 width="600px">
-                        <th>Form ini digunakan sebagai dasar pembuatan GTO oleh LOGISTIK</th>
+                        <th>Form ini digunakan sebagai dasar Stok LOGISTIK</th>
                     </table>
                 </th>
             </tr>
