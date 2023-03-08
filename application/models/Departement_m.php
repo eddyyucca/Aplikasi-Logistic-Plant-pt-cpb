@@ -14,6 +14,16 @@ class Departement_m extends CI_Model
         $this->db->join('logistik', 'logistik.mc = order.barang', 'left');
         $this->db->join('unit', 'unit.id_unit = order.kode_unit', 'left');
 
+        $this->db->where('status_o', 'pending');
+
+        $query = $this->db->get('order');
+        return $query->result();
+    }
+    public function get_orderacc()
+    {
+        $this->db->join('logistik', 'logistik.mc = order.barang', 'left');
+        $this->db->join('unit', 'unit.id_unit = order.kode_unit', 'left');
+
         $this->db->where('status_o', 'diterima');
 
         $query = $this->db->get('order');

@@ -58,7 +58,7 @@ class Logistik_m extends CI_Model
     {
         $this->db->join('site', 'site.id_site = gto_status.tujuan', 'left');
         $this->db->join('karyawan', 'karyawan.nik = gto_status.pengirim', 'left');
-        // $this->db->where('tujuan', $site);
+        $this->db->where('tujuan', $site);
         $this->db->where('status_gto', 'pending');
         $query = $this->db->get('gto_status');
         return $query->result();

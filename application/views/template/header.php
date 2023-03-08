@@ -227,8 +227,8 @@
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gto_ditolak') ?>">Laporan GTO Ditolak</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_gti') ?>">Laporan GTI</a>
 											<a class="collapse-item" href="<?= base_url('admin/laporan_logistik') ?>">Laporan Logistik</a>
-											<a class="collapse-item" href="<?= base_url('admin/laporan_plant') ?>">Laporan Plant Diterima</a>
-											<a class="collapse-item" href="<?= base_url('admin/laporan_plant') ?>">Laporan Plant Ditolak</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_plantacc') ?>">Laporan Plant Diterima</a>
+											<a class="collapse-item" href="<?= base_url('admin/laporan_plant_ditolak') ?>">Laporan Plant Ditolak</a>
 										</div>
 									</div>
 								</li>

@@ -259,6 +259,19 @@ class Admin extends CI_Controller
         $this->load->view('plant/laporan', $data);
         $this->load->view('template/footer');
     }
+    public function laporan_plantacc()
+    {
+        $data['level'] = $this->session->userdata('level');
+        $data['lokasi_k'] = $this->session->userdata('l_kar');
+
+        $data['judul'] = 'Laporan Plant';
+        $data['nama'] = $this->session->userdata('nama');
+
+        $data['data'] = $this->departement_m->get_orderacc();
+        $this->load->view('template/header', $data);
+        $this->load->view('plant/laporan', $data);
+        $this->load->view('template/footer');
+    }
     public function laporan_plant_ditolak()
     {
         $data['level'] = $this->session->userdata('level');
@@ -1216,8 +1229,8 @@ class Admin extends CI_Controller
             );
             $aa = $k->id_log;
             // $a = $k->tujuan;
-
             var_dump($data);
+
             $this->db->where('id_log', $aa);
             // $this->db->where('l_barang', $a);
 
@@ -1229,8 +1242,8 @@ class Admin extends CI_Controller
             // $this->db->where('l_barang', $a);
 
             $this->db->update('gto_status', $data2);
-            redirect('admin/laporan_gto');
         }
+        redirect('admin/laporan_gto');
     }
     public function ditolak($kd)
     {
